@@ -1,0 +1,14 @@
+{
+  "name": "pocketBase",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "pocketbase.exe serve ",
+    "build": "",
+    "start": "./pocketbase.exe serve",
+    "lint": "eslint --max-warnings 0",
+    "check-types": "next typegen && tsc --noEmit"
+  }
+  
+}
