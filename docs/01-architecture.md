@@ -1,13 +1,5 @@
 ---
-aliases:
-  - sad
-  - asd
-cssclasses:
-  - prety
-tags:
-  - architect
-ddsfsdf:
-f: 4564
+
 ---
 
 # 📁 Project Architecture & Folder Structure
@@ -64,7 +56,7 @@ src/
 │
 ├── features/ # 🔥 Feature-based isolation
 │ └── [feature A]/
-│     ├── models/         # entity, dto, payload, query, viewmodel
+│     ├── models/         # entity, dto, payload, query, viewModel
 │     ├── mappers/        # DTO ↔ Entity ↔ ViewModel
 │     ├── api/            # API calls (client/server)
 │     ├── hooks/          # React Query hooks
