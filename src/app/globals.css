@@ -188,3 +188,45 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
 }
+
+@layer base {
+  code,
+  kbd,
+  samp,
+  pre,
+  tt {
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  }
+
+  code {
+    color: var(--code-text);
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.3125rem;
+    font-size: 0.94em;
+    line-height: 1.4;
+    white-space: break-spaces;
+  }
+
+  pre {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
+    border-radius: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    tab-size: 4;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function TailwindVariablesDoc() {
   return (
@@ -13,8 +14,8 @@ export default function TailwindVariablesDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">How Tailwind v4 Theming Works</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`/* globals.css */
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`/* globals.css */
 
 /* 1. @theme — define NEW design tokens */
 /* These become Tailwind utilities: bg-primary-500, text-neutral-200, etc. */
@@ -40,14 +41,14 @@ export default function TailwindVariablesDoc() {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Adding Custom Colors</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`/* Add a full color scale to globals.css */
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`/* Add a full color scale to globals.css */
 @theme {
   --color-brand-50:  #fdf4ff;
   --color-brand-100: #fae8ff;
@@ -63,14 +64,14 @@ export default function TailwindVariablesDoc() {
 }
 
 /* Now use in JSX: */
-/* <div className="bg-brand-100 text-brand-700 border-brand-300" /> */`}</code>
-          </pre>
+/* <div className="bg-brand-100 text-brand-700 border-brand-300" /> */`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Custom Font Families</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`/* 1. Load the font (Next.js font module or Google Fonts link) */
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`/* 1. Load the font (Next.js font module or Google Fonts link) */
 /* In layout.tsx: */
 import { Inter, Fira_Code } from "next/font/google";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -88,14 +89,14 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
 @theme {
   --font-display: "Cabinet Grotesk", sans-serif;
 }
-/* <h1 className="font-display"> */`}</code>
-          </pre>
+/* <h1 className="font-display"> */`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Custom Spacing & Sizing</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`@theme {
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`@theme {
   /* Custom spacing values (adds to scale, doesn't replace) */
   --spacing-18: 4.5rem;    /* p-18, m-18, w-18, h-18 */
   --spacing-22: 5.5rem;
@@ -115,14 +116,14 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
 }
 
 /* Usage: */
-/* <div className="p-18 rounded-card shadow-card text-display"> */`}</code>
-          </pre>
+/* <div className="p-18 rounded-card shadow-card text-display"> */`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Semantic Dark Mode Pattern (this project)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`/* The pattern used in this project: */
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`/* The pattern used in this project: */
 
 /* Step 1 — Define semantic vars in :root */
 :root { --surface: #ffffff; }
@@ -143,8 +144,8 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
    border-border    border-border-subtle
    text-muted       text-muted-foreground
    bg-sidebar-bg    etc.
-*/`}</code>
-          </pre>
+*/`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-warning-50 border border-warning-200 rounded-xl">

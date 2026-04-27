@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function ZustandDoc() {
   return (
@@ -6,7 +7,9 @@ export default function ZustandDoc() {
       <div className="mb-2"><span className="text-xs text-muted">Data &amp; State</span></div>
       <h1 className="text-3xl font-bold text-foreground mb-2">Zustand</h1>
       <p className="text-muted text-base mb-8 leading-relaxed">
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         Lightweight client-state management. No providers, no boilerplate. Use it for shared UI state, global settings, and persisted preferences — not for server data (that's React Query's job).
+
       </p>
 
       <div className="space-y-10">
@@ -24,6 +27,7 @@ export default function ZustandDoc() {
               </ul>
             </div>
             <div className="p-3 bg-error-50 border border-error-100 rounded-lg">
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               <p className="font-semibold text-error-700 mb-1">✗ Don't use for</p>
               <ul className="text-error-600 space-y-0.5 text-xs">
                 <li>API data (use React Query)</li>
@@ -37,8 +41,8 @@ export default function ZustandDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">1. Basic Store</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// features/how-to-zustand/store/counter.store.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// features/how-to-zustand/store/counter.store.ts
 import { create } from "zustand";
 
 interface CounterState {
@@ -57,14 +61,14 @@ export const useCounterStore = create<CounterState>()((set) => ({
 
 // Usage in component (NO provider needed):
 // const count = useCounterStore((s) => s.count);
-// const increment = useCounterStore((s) => s.increment);`}</code>
-          </pre>
+// const increment = useCounterStore((s) => s.increment);`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">2. Persisted Store</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`import { create } from "zustand";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface ThemeState {
@@ -85,14 +89,14 @@ export const useThemeStore = create<ThemeState>()(
       partialize: (state) => ({ theme: state.theme }),
     }
   )
-);`}</code>
-          </pre>
+);`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">3. Component-Scoped Store (no global state leak)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`import { createStore, useStore } from "zustand";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`import { createStore, useStore } from "zustand";
 import { createContext, useContext, useRef, type ReactNode } from "react";
 
 // Factory — creates a NEW store per component instance
@@ -120,14 +124,14 @@ export function useAccordion<T>(selector: (s: AccordionState) => T) {
   const store = useContext(AccordionContext);
   if (!store) throw new Error("Must be inside AccordionProvider");
   return useStore(store, selector);
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">4. Disposing / Clearing State</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Reset all state back to initial values
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Reset all state back to initial values
 const useAuthStore = create<AuthState>()((set) => {
   const initialState = { user: null, token: null };
   return {
@@ -140,14 +144,14 @@ const useAuthStore = create<AuthState>()((set) => {
 // For persisted stores — also clear storage
 const { logout } = useAuthStore();
 logout();
-useAuthStore.persist.clearStorage(); // removes from localStorage`}</code>
-          </pre>
+useAuthStore.persist.clearStorage(); // removes from localStorage`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">5. Preventing Unnecessary Re-renders</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`import { useShallow } from "zustand/react/shallow";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`import { useShallow } from "zustand/react/shallow";
 
 // ❌ Bad — subscribes to the WHOLE store, re-renders on ANY change
 const { count, user } = useStore();
@@ -158,8 +162,8 @@ const { count, user } = useStore(
 );
 
 // ✓ Best for single values — use a selector
-const count = useStore((s) => s.count); // only re-renders when count changes`}</code>
-          </pre>
+const count = useStore((s) => s.count); // only re-renders when count changes`}
+          </CodeBlock>
         </section>
 
         <section>

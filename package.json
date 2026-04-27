@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "^5.99.2",
     "@tanstack/react-table": "^8.21.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "axios": "^1.15.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -26,6 +27,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.74.0",
+    "react-syntax-highlighter": "^16.1.1",
     "tailwind-merge": "^3.5.0",
     "zod": "^4.3.6",
     "zustand": "^5.0.12"

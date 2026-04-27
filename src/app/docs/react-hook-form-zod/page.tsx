@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function ReactHookFormZodDoc() {
   return (
@@ -22,8 +23,8 @@ export default function ReactHookFormZodDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">1. Define the Schema</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// features/auth/validators/login.schema.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// features/auth/validators/login.schema.ts
 import { z } from "zod";
 
 export const loginSchema = z.object({
@@ -33,14 +34,14 @@ export const loginSchema = z.object({
 });
 
 // Infer the type — use this as the form's type
-export type LoginSchema = z.infer<typeof loginSchema>;`}</code>
-          </pre>
+export type LoginSchema = z.infer<typeof loginSchema>;`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">2. Build the Form Component</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginSchema } from "../validators/login.schema";
@@ -113,14 +114,14 @@ export function LoginForm() {
       </button>
     </form>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Key useForm Options</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`const form = useForm<MySchema>({
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`const form = useForm<MySchema>({
   resolver: zodResolver(mySchema),    // connect Zod
   defaultValues: { name: "" },         // initial values
   mode: "onBlur",                      // validate on blur (default: onSubmit)
@@ -143,14 +144,14 @@ const {
   setError,          // set a server-side error
   reset,             // reset to default values
   getValues,         // get current values without subscribe
-} = form;`}</code>
-          </pre>
+} = form;`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Using Controller for Custom Inputs</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`import { Controller } from "react-hook-form";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`import { Controller } from "react-hook-form";
 
 // For inputs that don't support ref (like custom selects, date pickers)
 <Controller
@@ -164,8 +165,8 @@ const {
       error={fieldState.error?.message}
     />
   )}
-/>`}</code>
-          </pre>
+/>`}
+          </CodeBlock>
         </section>
 
         <section>

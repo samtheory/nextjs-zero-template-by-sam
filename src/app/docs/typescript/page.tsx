@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function TypeScriptDoc() {
   return (
@@ -13,8 +14,8 @@ export default function TypeScriptDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Utility Types</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`type User = { id: string; name: string; email: string; role: "admin" | "user" };
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`type User = { id: string; name: string; email: string; role: "admin" | "user" };
 
 // Partial — all fields optional (useful for update payloads)
 type UpdateUser = Partial<User>;  // { id?: string; name?: string; ... }
@@ -43,14 +44,14 @@ function createPost(title: string, body: string) {}
 type CreatePostArgs = Parameters<typeof createPost>;  // [string, string]
 
 // Awaited — unwrap a Promise type
-type ApiData = Awaited<ReturnType<typeof fetchUser>>;`}</code>
-          </pre>
+type ApiData = Awaited<ReturnType<typeof fetchUser>>;`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Extract & Exclude (Union manipulation)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`type Status = "pending" | "active" | "deleted" | "archived";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`type Status = "pending" | "active" | "deleted" | "archived";
 
 // Extract — keep only matching union members
 type ActiveStatuses = Extract<Status, "pending" | "active">;  // "pending" | "active"
@@ -60,14 +61,14 @@ type VisibleStatuses = Exclude<Status, "deleted">;  // "pending" | "active" | "a
 
 // NonNullable — remove null and undefined
 type MaybeString = string | null | undefined;
-type DefiniteString = NonNullable<MaybeString>;  // string`}</code>
-          </pre>
+type DefiniteString = NonNullable<MaybeString>;  // string`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Generics</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Generic API response wrapper
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Generic API response wrapper
 interface ApiResponse<T> {
   data: T;
   meta: { total: number; page: number };
@@ -91,14 +92,14 @@ const name = getProperty(user, "name");  // TypeScript knows this is string
 interface Pagination<T = unknown> {
   items: T[];
   total: number;
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Type Guards & Narrowing</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Type guard function
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Type guard function
 function isApiError(error: unknown): error is { message: string; code: number } {
   return (
     typeof error === "object" &&
@@ -125,27 +126,27 @@ function area(shape: Shape): number {
     case "circle": return Math.PI * shape.radius ** 2;
     case "rect":   return shape.width * shape.height;
   }
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Template Literal Types</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`type EventName = "click" | "focus" | "blur";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`type EventName = "click" | "focus" | "blur";
 type HandlerName = \`on\${Capitalize<EventName>}\`;
 // "onClick" | "onFocus" | "onBlur"
 
 // Useful for query keys pattern
 type CollectionName = "posts" | "users" | "comments";
-type QueryKey = \`\${CollectionName}:list\` | \`\${CollectionName}:detail\`;`}</code>
-          </pre>
+type QueryKey = \`\${CollectionName}:list\` | \`\${CollectionName}:detail\`;`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">as const & satisfies</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// as const — makes type literal (narrow), prevents widening
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// as const — makes type literal (narrow), prevents widening
 const ROLES = ["admin", "user", "guest"] as const;
 type Role = typeof ROLES[number];  // "admin" | "user" | "guest"
 
@@ -154,8 +155,8 @@ const config = {
   timeout: 5000,
   retries: 3,
 } satisfies Partial<AppConfig>;
-// config.timeout is number (not narrowed away), but shape is validated`}</code>
-          </pre>
+// config.timeout is number (not narrowed away), but shape is validated`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-accent-50 border border-accent-200 rounded-xl">

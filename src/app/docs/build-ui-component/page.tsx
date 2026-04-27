@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function BuildUIDoc() {
   return (
@@ -13,32 +14,32 @@ export default function BuildUIDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Folder Conventions</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`presentation/components/
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`presentation/components/
 ├── ui/            ← Primitive building blocks (Button, Input, Badge, Card…)
 ├── shared/        ← Composite components used across features (DataTable, EmptyState…)
-└── layouts/       ← Page-level layout shells (Sidebar, TopNav, PageHeader…)`}</code>
-          </pre>
+└── layouts/       ← Page-level layout shells (Sidebar, TopNav, PageHeader…)`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">cn Helper — className merging</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// shared/utils/cn.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// shared/utils/cn.ts
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-// Combines clsx (conditional classes) + tailwind-merge (removes duplicate Tailwind classes)`}</code>
-          </pre>
+// Combines clsx (conditional classes) + tailwind-merge (removes duplicate Tailwind classes)`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Button with cva Variants</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// presentation/components/ui/Button.tsx
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// presentation/components/ui/Button.tsx
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/shared/utils/cn";
 import type { ButtonHTMLAttributes } from "react";
@@ -104,14 +105,14 @@ export function Button({
 // <Button>Save</Button>
 // <Button variant="ghost" size="sm">Cancel</Button>
 // <Button variant="danger" isLoading={isPending}>Delete</Button>
-// <Button className="w-full">Full width override</Button>`}</code>
-          </pre>
+// <Button className="w-full">Full width override</Button>`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Input Component</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// presentation/components/ui/Input.tsx
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// presentation/components/ui/Input.tsx
 import { cn } from "@/shared/utils/cn";
 import type { InputHTMLAttributes } from "react";
 
@@ -149,14 +150,14 @@ export function Input({ label, error, hint, className, id, ...props }: InputProp
       {hint && !error && <p className="text-xs text-muted">{hint}</p>}
     </div>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Compound Component Pattern</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// presentation/components/ui/Card.tsx
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// presentation/components/ui/Card.tsx
 import { cn } from "@/shared/utils/cn";
 import type { HTMLAttributes } from "react";
 
@@ -190,8 +191,8 @@ export { Card };
 //   <Card.Header><h3>Title</h3></Card.Header>
 //   <Card.Body>Content</Card.Body>
 //   <Card.Footer><Button>Save</Button></Card.Footer>
-// </Card>`}</code>
-          </pre>
+// </Card>`}
+          </CodeBlock>
         </section>
 
         <section>

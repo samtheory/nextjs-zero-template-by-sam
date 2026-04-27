@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function BuildFeatureDoc() {
   return (
@@ -13,8 +14,8 @@ export default function BuildFeatureDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Folder Structure</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`features/
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`features/
 └── posts/                     ← feature name (kebab-case, plural noun)
     ├── index.ts               ← PUBLIC barrel export — REQUIRED
     ├── README.md              ← feature docs
@@ -38,14 +39,14 @@ export default function BuildFeatureDoc() {
     ├── store/
     │   └── posts.store.ts     ← feature Zustand store (if needed)
     └── validators/
-        └── post.schema.ts     ← Zod schemas`}</code>
-          </pre>
+        └── post.schema.ts     ← Zod schemas`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 1 — Models</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// models/post.dto.ts — what the API returns
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// models/post.dto.ts — what the API returns
 export interface PostDto {
   id: string;
   collectionId: string;
@@ -78,14 +79,14 @@ export interface PostQuery {
   authorId?: string;
   page?: number;
   perPage?: number;
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 2 — Mapper</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// mappers/posts.mapper.ts — transforms API DTO → clean entity
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// mappers/posts.mapper.ts — transforms API DTO → clean entity
 import type { PostDto } from "../models/post.dto";
 import type { Post } from "../models/post.entity";
 
@@ -103,14 +104,14 @@ export const postsMapper = {
   toEntityList(dtos: PostDto[]): Post[] {
     return dtos.map(postsMapper.toEntity);
   },
-};`}</code>
-          </pre>
+};`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 3 — Validator</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// validators/post.schema.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// validators/post.schema.ts
 import { z } from "zod";
 
 export const createPostSchema = z.object({
@@ -121,14 +122,14 @@ export const createPostSchema = z.object({
 export const updatePostSchema = createPostSchema.partial();
 
 export type CreatePostSchema = z.infer<typeof createPostSchema>;
-export type UpdatePostSchema = z.infer<typeof updatePostSchema>;`}</code>
-          </pre>
+export type UpdatePostSchema = z.infer<typeof updatePostSchema>;`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 4 — Server API</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// api/posts.server-api.ts — raw HTTP calls (no React hooks)
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// api/posts.server-api.ts — raw HTTP calls (no React hooks)
 import { httpClient } from "@/core/services/http";
 import { postsMapper } from "../mappers/posts.mapper";
 import type { Post } from "../models/post.entity";
@@ -147,14 +148,14 @@ export async function fetchPost(id: string): Promise<Post> {
 export async function createPost(payload: CreatePostPayload): Promise<Post> {
   const response = await httpClient.post("/posts", payload);
   return postsMapper.toEntity(response.data);
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 5 — Query Keys + React Query Hooks</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// api/posts.keys.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// api/posts.keys.ts
 export const postKeys = {
   all: ["posts"] as const,
   lists: () => [...postKeys.all, "list"] as const,
@@ -181,14 +182,14 @@ export function useCreatePost() {
     mutationFn: createPost,
     onSuccess: () => qc.invalidateQueries({ queryKey: postKeys.lists() }),
   });
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 6 — Barrel Export</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// index.ts — ONLY export what other features/pages should use
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// index.ts — ONLY export what other features/pages should use
 export { useGetPosts, useCreatePost } from "./api/posts.api";
 export { fetchPosts } from "./api/posts.server-api";
 export type { Post } from "./models/post.entity";
@@ -197,8 +198,8 @@ export { createPostSchema } from "./validators/post.schema";
 export type { CreatePostSchema } from "./validators/post.schema";
 
 // Usage from outside:
-// import { useGetPosts, type Post } from "@/features/posts";`}</code>
-          </pre>
+// import { useGetPosts, type Post } from "@/features/posts";`}
+          </CodeBlock>
         </section>
 
         <section>

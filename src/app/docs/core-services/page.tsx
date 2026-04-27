@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function CoreServicesDoc() {
   return (
@@ -37,8 +38,8 @@ export default function CoreServicesDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">HTTP Client</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// The http service is an Axios instance with:
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// The http service is an Axios instance with:
 // - Base URL from env config
 // - Request interceptor: injects auth token
 // - Response interceptor: maps errors to domain errors
@@ -49,14 +50,14 @@ import { httpClient } from "@/core/services/http";
 const posts = await httpClient.get("/posts");          // GET
 const post  = await httpClient.post("/posts", body);   // POST
 await httpClient.patch(\`/posts/\${id}\`, body);          // PATCH
-await httpClient.delete(\`/posts/\${id}\`);               // DELETE`}</code>
-          </pre>
+await httpClient.delete(\`/posts/\${id}\`);               // DELETE`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Storage Service (SSR-safe localStorage)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Never use localStorage directly in Next.js — it crashes on the server.
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Never use localStorage directly in Next.js — it crashes on the server.
 // Use the storage service instead:
 
 import { storageFactory } from "@/core/services/storage";
@@ -75,14 +76,14 @@ import { storageFactory } from "@/core/services/storage";
 persist(storeCreator, {
   name: "my-store",
   storage: createJSONStorage(() => storageFactory("local")),
-})`}</code>
-          </pre>
+})`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Cookie Service</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// ── CLIENT (in "use client" components) ──
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// ── CLIENT (in "use client" components) ──
 import { clientCookieService } from "@/core/services/cookie";
 
 clientCookieService.set("key", "value", { maxAge: 60 * 60 * 24 * 7 }); // 7 days
@@ -95,14 +96,14 @@ import { cookies } from "next/headers";
 
 // In a Server Component:
 const cookieStore = await cookies();
-const value = serverCookieService.get(cookieStore, "key");`}</code>
-          </pre>
+const value = serverCookieService.get(cookieStore, "key");`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Accessing Services from Client Components</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// TokenService is exposed via CoreProvider context:
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// TokenService is exposed via CoreProvider context:
 import { useTokenService } from "@/presentation/providers/CoreProvider";
 
 function MyComponent() {
@@ -114,8 +115,8 @@ function MyComponent() {
 
 // For other services — import directly (they handle SSR themselves):
 import { storageFactory } from "@/core/services/storage";
-import { clientCookieService } from "@/core/services/cookie";`}</code>
-          </pre>
+import { clientCookieService } from "@/core/services/cookie";`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-info-50 border border-info-200 rounded-xl">

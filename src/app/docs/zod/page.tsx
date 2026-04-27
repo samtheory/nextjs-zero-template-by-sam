@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function ZodDoc() {
   return (
@@ -47,8 +48,8 @@ export default function ZodDoc() {
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Key Concepts & API</h2>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">1. Define a schema</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`import { z } from "zod";
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`import { z } from "zod";
 
 // Object schema
 export const userSchema = z.object({
@@ -62,12 +63,12 @@ export const userSchema = z.object({
 });
 
 // Infer the TypeScript type — no duplication!
-export type User = z.infer<typeof userSchema>;`}</code>
-          </pre>
+export type User = z.infer<typeof userSchema>;`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">2. Parse vs SafeParse</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`// .parse() — throws ZodError on failure
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`// .parse() — throws ZodError on failure
 const user = userSchema.parse(rawData);
 
 // .safeParse() — returns { success, data } or { success, error }
@@ -76,12 +77,12 @@ if (!result.success) {
   console.error(result.error.format());
   return;
 }
-console.log(result.data); // fully typed User`}</code>
-          </pre>
+console.log(result.data); // fully typed User`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">3. Common validators</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`z.string()
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`z.string()
   .min(1, "Required")
   .max(255)
   .email()
@@ -97,12 +98,12 @@ z.enum(["a", "b", "c"])
 z.union([z.string(), z.number()])
 z.literal("admin")
 z.nullable(z.string())   // string | null
-z.optional(z.string())   // string | undefined`}</code>
-          </pre>
+z.optional(z.string())   // string | undefined`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">4. Transform & Pipe</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`// Transform: parse then transform the value
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`// Transform: parse then transform the value
 const priceSchema = z.string()
   .transform((val) => parseFloat(val))
   .pipe(z.number().positive());
@@ -111,12 +112,12 @@ const priceSchema = z.string()
 const usernameSchema = z.string().refine(
   async (val) => !(await isUsernameTaken(val)),
   { message: "Username already taken" }
-);`}</code>
-          </pre>
+);`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">5. Partial, Pick, Omit</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`// For update payloads — all fields optional
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`// For update payloads — all fields optional
 const updateUserSchema = userSchema.partial();
 
 // Only specific fields
@@ -126,12 +127,12 @@ const createUserSchema = userSchema.pick({ name: true, email: true });
 const publicUserSchema = userSchema.omit({ createdAt: true });
 
 // Extend
-const adminSchema = userSchema.extend({ permissions: z.array(z.string()) });`}</code>
-          </pre>
+const adminSchema = userSchema.extend({ permissions: z.array(z.string()) });`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">6. Error formatting</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`const result = userSchema.safeParse(bad);
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`const result = userSchema.safeParse(bad);
 if (!result.success) {
   // Flat list of errors
   result.error.issues.forEach((issue) => {
@@ -141,8 +142,8 @@ if (!result.success) {
   // Nested format (useful for forms)
   const formatted = result.error.format();
   console.log(formatted.email?._errors); // ["Invalid email"]
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         {/* Best practices */}

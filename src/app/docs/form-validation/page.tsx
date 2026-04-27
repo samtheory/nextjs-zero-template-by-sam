@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function FormValidationDoc() {
   return (
@@ -33,8 +34,8 @@ export default function FormValidationDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Complete Form with Error Handling</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -96,14 +97,14 @@ export function LoginForm() {
       </button>
     </form>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Error Mapper Service</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// core/services/error-mapper maps HTTP/PocketBase errors to domain errors.
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// core/services/error-mapper maps HTTP/PocketBase errors to domain errors.
 // The httpClient interceptor applies this automatically.
 // You can also use it manually:
 
@@ -123,14 +124,14 @@ try {
       setError(field as keyof FormData, { message });
     }
   }
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">UX Patterns</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// 1. Show errors only after user has touched the field
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// 1. Show errors only after user has touched the field
 //    RHF does this by default with mode: "onBlur"
 
 // 2. Disable submit while pending — prevent double submission
@@ -145,8 +146,8 @@ const form = useForm({ mode: "onChange" });
 
 // 5. Watch a field value to conditionally show/hide fields
 const role = form.watch("role");
-{role === "admin" && <input {...register("adminCode")} />}`}</code>
-          </pre>
+{role === "admin" && <input {...register("adminCode")} />}`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-success-50 border border-success-100 rounded-xl">

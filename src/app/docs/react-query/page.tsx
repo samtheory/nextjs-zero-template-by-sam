@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function ReactQueryDoc() {
   return (
@@ -26,32 +27,32 @@ export default function ReactQueryDoc() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Setup</h2>
           <p className="text-sm text-muted mb-3">QueryClient is already configured in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">CoreProvider</code>. All features automatically have access to it.</p>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// src/presentation/providers/CoreProvider.tsx
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// src/presentation/providers/CoreProvider.tsx
 // QueryClient is created once and provided to the whole app via QueryClientProvider.
-// You don't need to set this up — it's already done.`}</code>
-          </pre>
+// You don't need to set this up — it's already done.`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Query Key Factory</h2>
           <p className="text-sm text-muted mb-3">Always define keys in a dedicated file. This makes invalidation reliable and keeps keys organized.</p>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// features/posts/api/posts.keys.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// features/posts/api/posts.keys.ts
 export const postKeys = {
   all: ["posts"] as const,
   lists: () => [...postKeys.all, "list"] as const,
   list: (filters: PostQuery) => [...postKeys.lists(), filters] as const,
   details: () => [...postKeys.all, "detail"] as const,
   detail: (id: string) => [...postKeys.details(), id] as const,
-};`}</code>
-          </pre>
+};`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">useQuery — Fetching Data</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`// features/posts/api/posts.api.ts
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`// features/posts/api/posts.api.ts
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { postKeys } from "./posts.keys";
@@ -72,12 +73,12 @@ export function useGetPost(id: string) {
     queryFn: () => fetchPost(id),
     enabled: !!id,               // only run when id is defined
   });
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">Using in a component</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { useGetPosts } from "@/features/posts/api";
 
 export function PostList() {
@@ -91,14 +92,14 @@ export function PostList() {
       {data?.map((post) => <li key={post.id}>{post.title}</li>)}
     </ul>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">useMutation — Modifying Data</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text mb-6">
-            <code>{`// features/posts/api/posts.api.ts
+          <CodeBlock language="typescript" className="border border-code-border mb-6">
+            {`// features/posts/api/posts.api.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useCreatePost() {
@@ -125,12 +126,12 @@ export function useDeletePost() {
       qc.removeQueries({ queryKey: postKeys.detail(id) });
     },
   });
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">Using a mutation</h3>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { useCreatePost } from "@/features/posts/api";
 
 export function CreatePostButton() {
@@ -144,8 +145,8 @@ export function CreatePostButton() {
       {isPending ? "Creating..." : "Create Post"}
     </button>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>

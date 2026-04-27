@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function FramerMotionDoc() {
   return (
@@ -13,8 +14,8 @@ export default function FramerMotionDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Basic motion Element</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { motion } from "framer-motion";
 
 // motion.div = animated <div>
@@ -31,14 +32,14 @@ export function FadeIn() {
       Hello!
     </motion.div>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Variants (reusable animation definitions)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { motion } from "framer-motion";
 
 // Define variants outside the component
@@ -68,14 +69,14 @@ export function AnimatedList({ posts }: { posts: Post[] }) {
       ))}
     </motion.ul>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">AnimatePresence (enter/exit animations)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { motion, AnimatePresence } from "framer-motion";
 
 // AnimatePresence enables exit animations when a component is removed
@@ -108,14 +109,14 @@ export function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       )}
     </AnimatePresence>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Gesture Animations</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { motion } from "framer-motion";
 
 // Hover and tap
@@ -132,14 +133,14 @@ import { motion } from "framer-motion";
   drag
   dragConstraints={{ left: -100, right: 100, top: -50, bottom: 50 }}
   className="w-12 h-12 rounded-full bg-primary-500 cursor-grab active:cursor-grabbing"
-/>`}</code>
-          </pre>
+/>`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">useMotionValue &amp; useTransform</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 export function ParallaxCard() {
@@ -166,14 +167,14 @@ export function ParallaxCard() {
       className="w-48 h-64 bg-surface border border-border rounded-xl"
     />
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Page Transitions</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// app/template.tsx — use template.tsx NOT layout.tsx for page transitions
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// app/template.tsx — use template.tsx NOT layout.tsx for page transitions
 // layout.tsx persists between routes; template.tsx unmounts and remounts
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
@@ -189,8 +190,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
       {children}
     </motion.div>
   );
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-error-50 border border-error-200 rounded-xl">

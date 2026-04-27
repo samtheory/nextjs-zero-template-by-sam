@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function AuthDoc() {
   return (
@@ -26,8 +27,8 @@ export default function AuthDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">TokenService</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Already implemented in core/services/token
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Already implemented in core/services/token
 // Access it via CoreProvider context:
 
 import { useTokenService } from "@/presentation/providers/CoreProvider";
@@ -43,14 +44,14 @@ function SomeClientComponent() {
 
   // Clear token (on logout)
   tokenService.clearToken();
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Auth Store (Zustand)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// features/auth/store/auth.store.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// features/auth/store/auth.store.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User } from "../models/auth.entity";
@@ -72,14 +73,14 @@ export const useAuthStore = create<AuthState>()(
     }),
     { name: "auth-storage" }
   )
-);`}</code>
-          </pre>
+);`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Login Mutation</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// features/auth/api/auth.api.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// features/auth/api/auth.api.ts
 "use client";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -112,14 +113,14 @@ export function useLogout() {
     logout();
     router.push("/login");
   };
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Route Protection (Next.js Middleware)</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// src/middleware.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// src/middleware.ts
 import { NextResponse, type NextRequest } from "next/server";
 
 const PUBLIC_PATHS = ["/login", "/signup", "/"];
@@ -138,14 +139,14 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-};`}</code>
-          </pre>
+};`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Reading Auth in Server Components</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// app/dashboard/page.tsx — Server Component
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// app/dashboard/page.tsx — Server Component
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -157,8 +158,8 @@ export default async function DashboardPage() {
 
   // Decode token or fetch user data here
   return <div>Welcome!</div>;
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-info-50 border border-info-200 rounded-xl">

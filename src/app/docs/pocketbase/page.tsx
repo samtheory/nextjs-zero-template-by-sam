@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function PocketBaseDoc() {
   return (
@@ -13,22 +14,22 @@ export default function PocketBaseDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Local Setup</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`# Start PocketBase + Next.js together:
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`# Start PocketBase + Next.js together:
 pnpm dev
 
 # PocketBase admin UI:
 http://127.0.0.1:8090/_/
 
 # API base URL (in .env):
-NEXT_PUBLIC_PB_URL=http://127.0.0.1:8090`}</code>
-          </pre>
+NEXT_PUBLIC_PB_URL=http://127.0.0.1:8090`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">PocketBase Client Singleton</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// lib/pocketbase.ts — create once, reuse everywhere
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// lib/pocketbase.ts — create once, reuse everywhere
 import PocketBase from "pocketbase";
 
 let pb: PocketBase | null = null;
@@ -38,14 +39,14 @@ export function getPocketBase(): PocketBase {
     pb = new PocketBase(process.env.NEXT_PUBLIC_PB_URL);
   }
   return pb;
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">CRUD Operations</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`import { getPocketBase } from "@/lib/pocketbase";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`import { getPocketBase } from "@/lib/pocketbase";
 
 const pb = getPocketBase();
 
@@ -70,14 +71,14 @@ const created = await pb.collection("posts").create({ title: "Hello", body: "Wor
 const updated = await pb.collection("posts").update("RECORD_ID", { title: "Updated" });
 
 // DELETE
-await pb.collection("posts").delete("RECORD_ID");`}</code>
-          </pre>
+await pb.collection("posts").delete("RECORD_ID");`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Authentication</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Email + password login
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Email + password login
 const authData = await pb.collection("users").authWithPassword(email, password);
 // authData.token — JWT
 // authData.record — user record
@@ -94,14 +95,14 @@ pb.authStore.clear();
 await pb.collection("users").authRefresh();
 
 // OAuth2 (Google, GitHub, etc.)
-await pb.collection("users").authWithOAuth2({ provider: "google" });`}</code>
-          </pre>
+await pb.collection("users").authWithOAuth2({ provider: "google" });`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Realtime Subscriptions</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`"use client";
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`"use client";
 import { useEffect } from "react";
 import { getPocketBase } from "@/lib/pocketbase";
 import { useQueryClient } from "@tanstack/react-query";
@@ -123,14 +124,14 @@ export function usePostsRealtime() {
       pb.collection("posts").unsubscribe("*");
     };
   }, []);
-}`}</code>
-          </pre>
+}`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">File Uploads</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// Upload a file field (use FormData, not JSON)
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// Upload a file field (use FormData, not JSON)
 const formData = new FormData();
 formData.append("title", "My Post");
 formData.append("cover", fileInput.files[0]);  // file field
@@ -142,8 +143,8 @@ const url = pb.files.getUrl(record, record.cover);
 // e.g. http://127.0.0.1:8090/api/files/posts/RECORD_ID/filename.jpg
 
 // Thumbnail (for images)
-const thumb = pb.files.getUrl(record, record.cover, { thumb: "100x100" });`}</code>
-          </pre>
+const thumb = pb.files.getUrl(record, record.cover, { thumb: "100x100" });`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-info-50 border border-info-200 rounded-xl">

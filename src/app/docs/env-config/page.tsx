@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CodeBlock } from "../_components/CodeBlock";
 
 export default function EnvConfigDoc() {
   return (
@@ -13,22 +14,22 @@ export default function EnvConfigDoc() {
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">File Conventions</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`.env                  # Shared defaults — COMMITTED to git (no secrets)
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`.env                  # Shared defaults — COMMITTED to git (no secrets)
 .env.local            # Local overrides — NOT committed (in .gitignore)
 .env.development      # Dev-specific — committed
 .env.production       # Production — committed (use for non-secret defaults)
 .env.production.local # Production secrets — NOT committed
 
 # Next.js loads these automatically based on NODE_ENV.
-# More specific files override less specific ones.`}</code>
-          </pre>
+# More specific files override less specific ones.`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">NEXT_PUBLIC_ vs Server-Only</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`# .env.local
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`# .env.local
 
 # ✓ Available in browser (bundled into JS) — only for non-secret values
 NEXT_PUBLIC_PB_URL=http://127.0.0.1:8090
@@ -37,14 +38,14 @@ NEXT_PUBLIC_APP_NAME="My App"
 # ✓ Server-only (NOT in browser bundle) — for secrets
 PB_ADMIN_EMAIL=admin@example.com
 PB_ADMIN_PASSWORD=supersecret
-JWT_SECRET=my-jwt-secret`}</code>
-          </pre>
+JWT_SECRET=my-jwt-secret`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Validated Config with Zod</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// core/services/config/env-validator.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// core/services/config/env-validator.ts
 import { z } from "zod";
 
 const envSchema = z.object({
@@ -62,14 +63,14 @@ if (!parsed.success) {
   throw new Error("Invalid environment configuration");
 }
 
-export const env = parsed.data;`}</code>
-          </pre>
+export const env = parsed.data;`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">App Config Service</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`// core/services/config/app-config.ts
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`// core/services/config/app-config.ts
 // Wraps validated env vars into a typed config object
 
 import { env } from "./env-validator";
@@ -87,14 +88,14 @@ export const appConfig = {
 
 // Usage anywhere:
 // import { appConfig } from "@/core/services/config";
-// const pb = new PocketBase(appConfig.pocketbase.url);`}</code>
-          </pre>
+// const pb = new PocketBase(appConfig.pocketbase.url);`}
+          </CodeBlock>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Multi-Environment Setup</h2>
-          <pre className="bg-code-bg border border-code-border rounded-lg p-4 overflow-x-auto text-xs font-mono text-code-text">
-            <code>{`# .env (committed — shared defaults)
+          <CodeBlock language="typescript" className="border border-code-border">
+            {`# .env (committed — shared defaults)
 NEXT_PUBLIC_APP_NAME="Zero Template"
 
 # .env.development (committed)
@@ -109,8 +110,8 @@ NEXT_PUBLIC_PB_URL=http://localhost:8091
 
 # In CI/CD — set env vars as secrets in your pipeline:
 # GitHub Actions: Settings → Secrets → NEXT_PUBLIC_PB_URL
-# Vercel: Project → Settings → Environment Variables`}</code>
-          </pre>
+# Vercel: Project → Settings → Environment Variables`}
+          </CodeBlock>
         </section>
 
         <section className="p-4 bg-warning-50 border border-warning-200 rounded-xl">
