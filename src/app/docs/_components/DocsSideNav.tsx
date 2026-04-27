@@ -85,11 +85,10 @@ export function DocsSideNav() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`flex items-center gap-2 px-3 py-2 text-sm rounded-2xl transition-colors duration-200 ${
-                        isActive
+                      className={`flex items-center gap-2 px-3 py-2 text-sm rounded-2xl transition-colors duration-200 ${isActive
                           ? "bg-sidebar-active-bg text-sidebar-active-text font-semibold"
                           : "text-muted hover:text-foreground hover:bg-surface-raised dark:hover:bg-surface"
-                      }`}
+                        }`}
                     >
                       {isActive && (
                         <span className="mr-2 w-2 h-2 rounded-full bg-sidebar-active shrink-0" />

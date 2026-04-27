@@ -148,10 +148,16 @@ const thumb = pb.files.getUrl(record, record.cover, { thumb: "100x100" });`}
           </CodeBlock>
         </DocsSection>
 
-        <DocsSection className="p-4 bg-info-50 border border-info-200 rounded-xl">
-          <p className="text-sm font-semibold text-info-700 mb-1">Working Example</p>
-          <Link href="/how-to-pocketbase" className="inline-flex items-center gap-1.5 text-xs font-semibold text-info-600 hover:text-info-800">
-            <code className="bg-info-100 px-1.5 py-0.5 rounded">src/features/how-to-pocketbase</code>
+        <DocsSection className="p-4 bg-secondary-50/80 border border-secondary-200 rounded-xl transition-colors duration-200 dark:bg-secondary-950/80 dark:border-secondary-700">
+          <p className="text-sm font-semibold text-secondary-700 mb-1 dark:text-secondary-200">Working Example</p>
+          <p className="text-xs text-secondary-600 mb-3 dark:text-secondary-300">Open the working example for this topic.</p>
+          <Link
+            href="/how-to-pocketbase"
+            className="inline-flex items-center gap-2 rounded-full border border-secondary-300 bg-secondary-100 px-4 py-2 text-xs font-semibold text-secondary-700 transition duration-200 hover:bg-secondary-200 hover:text-secondary-900 dark:border-secondary-700 dark:bg-secondary-900 dark:text-secondary-200 dark:hover:bg-secondary-800 dark:hover:text-secondary-50"
+          >
+            <span className="inline-flex items-center gap-1">
+              <code className="rounded bg-surface-raised px-2 py-0.5 text-[0.7rem] font-mono text-foreground dark:bg-surface dark:text-foreground">src/features/how-to-pocketbase</code>
+            </span>
             <span>→</span>
           </Link>
         </DocsSection>
