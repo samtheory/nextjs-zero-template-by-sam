@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
 import { DocsSection } from "../_components/DocsSection";
+import { WorkingExampleCard } from "../_components/WorkingExampleCard";
 
 export default function ZodDoc() {
   return (
@@ -37,7 +37,7 @@ export default function ZodDoc() {
               { loc: "shared/validators/", use: "Shared/reusable schemas" },
             ].map((r) => (
               <div key={r.loc} className="p-3 bg-surface border border-border rounded-lg">
-                <code className="text-xs font-mono text-primary-600">{r.loc}</code>
+                <code className="text-xs font-mono text-primary-400">{r.loc}</code>
                 <p className="text-muted mt-1">{r.use}</p>
               </div>
             ))}
@@ -153,6 +153,7 @@ if (!result.success) {
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ Define schemas in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">features/[name]/validators/[name].schema.ts</code></li>
             <li>✓ Always use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">z.infer&lt;&gt;</code> for types — never write them manually alongside a schema</li>
+             {/* eslint-disable-next-line react/no-unescaped-entities */}
             <li>✓ Use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">.safeParse()</code> at API boundaries (returns errors, doesn't throw)</li>
             <li>✓ Use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">.parse()</code> when you trust the data and want to throw on failure</li>
             <li>✓ Colocate update/create schemas with the base schema using <code className="font-mono bg-surface-raised px-1 rounded text-foreground">.partial()</code> / <code className="font-mono bg-surface-raised px-1 rounded text-foreground">.omit()</code></li>
@@ -161,19 +162,7 @@ if (!result.success) {
         </DocsSection>
 
         {/* Feature link */}
-        <DocsSection className="p-4 bg-secondary-50/80 border border-secondary-200 rounded-xl transition-colors duration-200 dark:bg-secondary-950/80 dark:border-secondary-700">
-          <p className="text-sm font-semibold text-secondary-700 mb-1 dark:text-secondary-200">Working Example</p>
-          <p className="text-xs text-secondary-600 mb-3 dark:text-secondary-300">Open the working example for this topic.</p>
-          <Link
-            href="/how-to-zod"
-            className="inline-flex items-center gap-2 rounded-full border border-secondary-300 bg-secondary-100 px-4 py-2 text-xs font-semibold text-secondary-700 transition duration-200 hover:bg-secondary-200 hover:text-secondary-900 dark:border-secondary-700 dark:bg-secondary-900 dark:text-secondary-200 dark:hover:bg-secondary-800 dark:hover:text-secondary-50"
-          >
-            <span className="inline-flex items-center gap-1">
-              <code className="rounded bg-surface-raised px-2 py-0.5 text-[0.7rem] font-mono text-foreground dark:bg-surface dark:text-foreground">src/features/how-to-zod</code>
-            </span>
-            <span>→</span>
-          </Link>
-        </DocsSection>
+        <WorkingExampleCard href="/how-to-zod" label="src/features/how-to-zod" />
       </div>
     </>
   );

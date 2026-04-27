@@ -95,7 +95,7 @@ export default function DocsHome() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-start justify-between p-4 rounded-xl border transition-all hover:shadow-sm hover:scale-[1.005] ${group.color}`}
+                  className={`flex items-start justify-between p-4 rounded-xl border transition-all ring-4 ring-transparent hover:ring-secondary-700/30 hover:shadow-md ${group.color}`}
                 >
                   <div>
                     <p className="text-sm font-semibold text-foreground">{item.label}</p>
