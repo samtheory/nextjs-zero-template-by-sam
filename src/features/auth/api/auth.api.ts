@@ -32,7 +32,7 @@ export async function signup(payload: SignupPayload): Promise<SignupResponseDto>
       return await api.upload({
         url: `${USERS_COLLECTION}/records`,
         body: formData,
-        callback: () => {},
+        callback: () => { },
       }) as SignupResponseDto;
     }
 

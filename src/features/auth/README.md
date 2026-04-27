@@ -50,6 +50,7 @@ flowchart TD
 ### Models (`models/`)
 
 #### `auth.dto.ts` - Data Transfer Objects
+
 Raw API response shapes from PocketBase. **Never modify these** - they represent the exact JSON structure returned by the server.
 
 ```typescript
@@ -64,6 +65,7 @@ export interface UserRecordDto {
 ```
 
 #### `auth.entity.ts` - Domain Entities
+
 Business logic models with methods and identity. These represent your domain concepts.
 
 ```typescript
@@ -78,6 +80,7 @@ export interface UserEntity {
 ```
 
 #### `auth.payload.ts` - Request Payloads
+
 Data sent TO the API. Only includes fields the API expects.
 
 ```typescript
@@ -92,6 +95,7 @@ export interface SignupPayload {
 ```
 
 #### `auth.viewmodel.ts` - UI View Models
+
 UI-ready data with computed fields and formatting.
 
 ```typescript
@@ -107,6 +111,7 @@ export interface UserViewModel {
 ### Mappers (`mappers/`)
 
 #### `auth.mapper.ts` - Data Transformation
+
 Converts between layers: DTO → Entity → ViewModel
 
 ```typescript
@@ -138,6 +143,7 @@ export class AuthMapper {
 ### Validators (`validators/`)
 
 #### `auth.schema.ts` - Zod Validation Schemas
+
 Input validation and type safety for forms.
 
 ```typescript
@@ -157,6 +163,7 @@ export const signupSchema = z.object({
 ### API Layer (`api/`)
 
 #### `auth.keys.ts` - TanStack Query Keys
+
 Cache key definitions for React Query.
 
 ```typescript
@@ -167,6 +174,7 @@ export const authKeys = {
 ```
 
 #### `auth.api.ts` - HTTP API Calls
+
 Direct API communication using the core HTTP client.
 
 ```typescript
@@ -188,6 +196,7 @@ export async function signup(payload: SignupPayload): Promise<SignupResponseDto>
 React Query hooks that provide data fetching and mutations.
 
 #### `use-signup.ts` - User Registration
+
 ```typescript
 const { signup, isPending, error } = useSignup();
 
@@ -201,6 +210,7 @@ await signup({
 ```
 
 #### `use-login.ts` - Authentication
+
 ```typescript
 const { login, isPending, error } = useLogin();
 
@@ -212,12 +222,14 @@ await login({
 ```
 
 #### `use-auth-refresh.ts` - Token Refresh
+
 ```typescript
 const { refresh } = useAuthRefresh();
 await refresh(); // Refreshes expired tokens
 ```
 
 #### `use-password-reset.ts` - Password Management
+
 ```typescript
 const { request, confirm } = usePasswordReset();
 
@@ -233,6 +245,7 @@ await confirm({
 ```
 
 #### `use-email-change.ts` - Email Updates
+
 ```typescript
 const { request, confirm } = useEmailChange();
 
@@ -249,9 +262,11 @@ await confirm({
 ### Components (`components/`)
 
 #### `signup-form.tsx` - Registration Form
+
 Complete signup form with validation, file upload, and error handling.
 
 #### `login-form.tsx` - Login Form
+
 Login form with forgot password flow built-in.
 
 ### Public API (`index.ts`)
@@ -378,13 +393,16 @@ export function CustomAuthComponent() {
 ## Best Practices
 
 ### 1. **Never Skip Validation**
+
 Always use Zod schemas for form validation. They provide:
+
 - Type safety
 - Runtime validation
 - Better error messages
 - Consistent validation rules
 
 ### 2. **Handle Errors Properly**
+
 Use the domain error types from `@/core/services/error-mapper`:
 
 ```typescript
@@ -404,6 +422,7 @@ try {
 ```
 
 ### 3. **Use React Query Keys**
+
 Always define query keys in `auth.keys.ts` for proper cache invalidation:
 
 ```typescript
@@ -415,6 +434,7 @@ queryClient.invalidateQueries({ queryKey: ['auth', 'session'] });
 ```
 
 ### 4. **Keep Components Focused**
+
 Components should only handle UI logic. Move business logic to hooks:
 
 ```typescript
@@ -446,6 +466,7 @@ export function LoginForm() {
 ```
 
 ### 5. **Type Safety First**
+
 Always use the provided types:
 
 ```typescript
@@ -457,6 +478,7 @@ const user: any = await signup(data);
 ```
 
 ### 6. **Test Your Forms**
+
 Test validation thoroughly:
 
 ```typescript
@@ -467,6 +489,7 @@ expect(() => schema.parse(invalidData)).toThrow();
 ```
 
 ### 7. **Secure Token Storage**
+
 The system automatically handles token storage via `TokenService`. Never manually store tokens:
 
 ```typescript
@@ -479,6 +502,7 @@ localStorage.setItem('token', response.token);
 ```
 
 ### 8. **Avatar Upload Handling**
+
 For file uploads, ensure proper FormData construction:
 
 ```typescript
@@ -489,6 +513,7 @@ await api.upload({ url: '/users/records', body: formData });
 ```
 
 ### 9. **Error Boundaries**
+
 Wrap auth forms in error boundaries for better UX:
 
 ```tsx
@@ -504,6 +529,7 @@ export function AuthPage() {
 ```
 
 ### 10. **Accessibility**
+
 Ensure forms are accessible:
 
 ```tsx
