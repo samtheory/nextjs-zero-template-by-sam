@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   STATIC COLOR SCALES
+   These are fixed values — they do NOT change with dark mode.
+   Use as Tailwind utilities: bg-primary-500, text-neutral-200
+   ============================================================ */
+
+@theme {
+  /* Neutral — Zinc */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
+
+  /* Primary — Indigo (brand) */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+  --color-primary-950: #1e1b4b;
+
+  /* Secondary — Teal */
+  --color-secondary-50: #f0fdfa;
+  --color-secondary-100: #ccfbf1;
+  --color-secondary-200: #99f6e4;
+  --color-secondary-300: #5eead4;
+  --color-secondary-400: #2dd4bf;
+  --color-secondary-500: #14b8a6;
+  --color-secondary-600: #0d9488;
+  --color-secondary-700: #0f766e;
+  --color-secondary-800: #115e59;
+  --color-secondary-900: #134e4a;
+  --color-secondary-950: #042f2e;
+
+  /* Accent — Amber */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+  --color-accent-900: #78350f;
+  --color-accent-950: #451a03;
+
+  /* Success — Green */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+
+  /* Warning — Orange */
+  --color-warning-50: #fff7ed;
+  --color-warning-100: #ffedd5;
+  --color-warning-500: #f97316;
+  --color-warning-600: #ea580c;
+  --color-warning-700: #c2410c;
+
+  /* Error — Red */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+
+  /* Info — Blue */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   SEMANTIC TOKENS — LIGHT MODE
+   These ARE theme-aware. They change in dark mode.
+   Defined as raw CSS vars, then exposed to Tailwind via @theme inline.
+   ============================================================ */
+
+:root {
+  /* Layout */
+  --background: #fafafa;
+  --foreground: #09090b;
+  --surface: #ffffff;
+  --surface-raised: #f4f4f5;
+
+  /* Borders */
+  --border: #e4e4e7;
+  --border-subtle: #f4f4f5;
+
+  /* Text */
+  --muted: #71717a;
+  --muted-foreground: #a1a1aa;
+
+  /* Sidebar */
+  --sidebar-bg: #f4f4f5;
+  --sidebar-border: #e4e4e7;
+  --sidebar-active: #6366f1;
+  --sidebar-active-bg: #eef2ff;
+  --sidebar-active-text: #4338ca;
+
+  /* Code blocks */
+  --code-bg: #f4f4f5;
+  --code-border: #e4e4e7;
+  --code-text: #18181b;
 }
+
+/* ============================================================
+   SEMANTIC TOKENS — DARK MODE
+   ============================================================ */
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #09090b;
+    --foreground: #fafafa;
+    --surface: #18181b;
+    --surface-raised: #27272a;
+    --border: #27272a;
+    --border-subtle: #18181b;
+    --muted: #a1a1aa;
+    --muted-foreground: #71717a;
+    --sidebar-bg: #18181b;
+    --sidebar-border: #27272a;
+    --sidebar-active: #818cf8;
+    --sidebar-active-bg: #1e1b4b;
+    --sidebar-active-text: #a5b4fc;
+    --code-bg: #18181b;
+    --code-border: #3f3f46;
+    --code-text: #f4f4f5;
   }
 }
 
+/* ============================================================
+   EXPOSE SEMANTIC TOKENS TO TAILWIND v4
+   @theme inline = reference existing CSS vars (no new var created).
+   This generates utilities: bg-background, text-foreground, etc.
+   ============================================================ */
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-active-bg: var(--sidebar-active-bg);
+  --color-sidebar-active-text: var(--sidebar-active-text);
+
+  --color-code-bg: var(--code-bg);
+  --color-code-border: var(--code-border);
+  --color-code-text: var(--code-text);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
 }
