@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function FormValidationDoc() {
   return (
@@ -12,7 +13,7 @@ export default function FormValidationDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Validation Layers</h2>
           <div className="space-y-2 text-sm">
             {[
@@ -30,9 +31,9 @@ export default function FormValidationDoc() {
               </div>
             ))}
           </div>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Complete Form with Error Handling</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -99,9 +100,9 @@ export function LoginForm() {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Error Mapper Service</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// core/services/error-mapper maps HTTP/PocketBase errors to domain errors.
@@ -126,9 +127,9 @@ try {
   }
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">UX Patterns</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// 1. Show errors only after user has touched the field
@@ -148,15 +149,15 @@ const form = useForm({ mode: "onChange" });
 const role = form.watch("role");
 {role === "admin" && <input {...register("adminCode")} />}`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-success-50 border border-success-100 rounded-xl">
+        <DocsSection className="p-4 bg-success-50 border border-success-100 rounded-xl">
           <p className="text-sm font-semibold text-success-700 mb-1">Working Example</p>
           <Link href="/how-to-form-validation" className="inline-flex items-center gap-1.5 text-xs font-semibold text-success-600 hover:text-success-800">
             <code className="bg-success-100 px-1.5 py-0.5 rounded">src/features/how-to-form-validation</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

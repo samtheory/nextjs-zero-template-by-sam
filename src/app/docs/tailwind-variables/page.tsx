@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function TailwindVariablesDoc() {
   return (
@@ -12,7 +13,7 @@ export default function TailwindVariablesDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">How Tailwind v4 Theming Works</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`/* globals.css */
@@ -43,9 +44,9 @@ export default function TailwindVariablesDoc() {
   --color-foreground: var(--foreground);
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Adding Custom Colors</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`/* Add a full color scale to globals.css */
@@ -66,9 +67,9 @@ export default function TailwindVariablesDoc() {
 /* Now use in JSX: */
 /* <div className="bg-brand-100 text-brand-700 border-brand-300" /> */`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Custom Font Families</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`/* 1. Load the font (Next.js font module or Google Fonts link) */
@@ -91,9 +92,9 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
 }
 /* <h1 className="font-display"> */`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Custom Spacing & Sizing</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`@theme {
@@ -118,9 +119,9 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
 /* Usage: */
 /* <div className="p-18 rounded-card shadow-card text-display"> */`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Semantic Dark Mode Pattern (this project)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`/* The pattern used in this project: */
@@ -146,15 +147,15 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
    bg-sidebar-bg    etc.
 */`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-warning-50 border border-warning-200 rounded-xl">
+        <DocsSection className="p-4 bg-warning-50 border border-warning-200 rounded-xl">
           <p className="text-sm font-semibold text-warning-700 mb-1">Working Example</p>
           <Link href="/how-to-tailwind" className="inline-flex items-center gap-1.5 text-xs font-semibold text-warning-600 hover:text-warning-800">
             <code className="bg-warning-100 px-1.5 py-0.5 rounded">src/features/how-to-tailwind</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

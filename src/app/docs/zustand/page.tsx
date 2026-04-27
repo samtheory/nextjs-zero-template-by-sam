@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function ZustandDoc() {
   return (
@@ -13,7 +14,7 @@ export default function ZustandDoc() {
       </p>
 
       <div className="space-y-10">
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">When to Use Zustand</h2>
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="p-3 bg-success-50 border border-success-100 rounded-lg">
@@ -37,9 +38,9 @@ export default function ZustandDoc() {
               </ul>
             </div>
           </div>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">1. Basic Store</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// features/how-to-zustand/store/counter.store.ts
@@ -63,9 +64,9 @@ export const useCounterStore = create<CounterState>()((set) => ({
 // const count = useCounterStore((s) => s.count);
 // const increment = useCounterStore((s) => s.increment);`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">2. Persisted Store</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`import { create } from "zustand";
@@ -91,9 +92,9 @@ export const useThemeStore = create<ThemeState>()(
   )
 );`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">3. Component-Scoped Store (no global state leak)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`import { createStore, useStore } from "zustand";
@@ -126,9 +127,9 @@ export function useAccordion<T>(selector: (s: AccordionState) => T) {
   return useStore(store, selector);
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">4. Disposing / Clearing State</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// Reset all state back to initial values
@@ -146,9 +147,9 @@ const { logout } = useAuthStore();
 logout();
 useAuthStore.persist.clearStorage(); // removes from localStorage`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">5. Preventing Unnecessary Re-renders</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`import { useShallow } from "zustand/react/shallow";
@@ -164,9 +165,9 @@ const { count, user } = useStore(
 // ✓ Best for single values — use a selector
 const count = useStore((s) => s.count); // only re-renders when count changes`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Best Practices</h2>
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ One store per concern (<code className="font-mono bg-surface-raised px-1 rounded text-foreground">useAuthStore</code>, <code className="font-mono bg-surface-raised px-1 rounded text-foreground">useCartStore</code>) — not one giant store</li>
@@ -175,16 +176,21 @@ const count = useStore((s) => s.count); // only re-renders when count changes`}
             <li>✓ Use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">useShallow</code> when selecting multiple fields</li>
             <li>✓ Put stores in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">features/[name]/store/</code> (feature-scoped) or <code className="font-mono bg-surface-raised px-1 rounded text-foreground">presentation/stores/</code> (global)</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-secondary-50 border border-secondary-200 rounded-xl">
-          <p className="text-sm font-semibold text-secondary-700 mb-1">Working Example</p>
-          <p className="text-xs text-secondary-600 mb-3">All 4 patterns: basic, persisted, component-scoped, and disposal.</p>
-          <Link href="/how-to-zustand" className="inline-flex items-center gap-1.5 text-xs font-semibold text-secondary-600 hover:text-secondary-800">
-            <code className="bg-secondary-100 px-1.5 py-0.5 rounded">src/features/how-to-zustand</code>
+        <DocsSection className="p-4 bg-secondary-50/80 border border-secondary-200 rounded-xl transition-colors duration-200 dark:bg-secondary-950/80 dark:border-secondary-700">
+          <p className="text-sm font-semibold text-secondary-700 mb-1 dark:text-secondary-200">Working Example</p>
+          <p className="text-xs text-secondary-600 mb-3 dark:text-secondary-300">All 4 patterns: basic, persisted, component-scoped, and disposal.</p>
+          <Link
+            href="/how-to-zustand"
+            className="inline-flex items-center gap-2 rounded-full border border-secondary-300 bg-secondary-100 px-4 py-2 text-xs font-semibold text-secondary-700 transition duration-200 hover:bg-secondary-200 hover:text-secondary-900 dark:border-secondary-700 dark:bg-secondary-900 dark:text-secondary-200 dark:hover:bg-secondary-800 dark:hover:text-secondary-50"
+          >
+            <span className="inline-flex items-center gap-1">
+              <code className="rounded bg-surface-raised px-2 py-0.5 text-[0.7rem] font-mono text-foreground dark:bg-surface dark:text-foreground">src/features/how-to-zustand</code>
+            </span>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

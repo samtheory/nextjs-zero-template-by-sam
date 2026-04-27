@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function BuildFeatureDoc() {
   return (
@@ -12,7 +13,7 @@ export default function BuildFeatureDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Folder Structure</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`features/
@@ -41,9 +42,9 @@ export default function BuildFeatureDoc() {
     └── validators/
         └── post.schema.ts     ← Zod schemas`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 1 — Models</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// models/post.dto.ts — what the API returns
@@ -81,9 +82,9 @@ export interface PostQuery {
   perPage?: number;
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 2 — Mapper</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// mappers/posts.mapper.ts — transforms API DTO → clean entity
@@ -106,9 +107,9 @@ export const postsMapper = {
   },
 };`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 3 — Validator</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// validators/post.schema.ts
@@ -124,9 +125,9 @@ export const updatePostSchema = createPostSchema.partial();
 export type CreatePostSchema = z.infer<typeof createPostSchema>;
 export type UpdatePostSchema = z.infer<typeof updatePostSchema>;`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 4 — Server API</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// api/posts.server-api.ts — raw HTTP calls (no React hooks)
@@ -150,9 +151,9 @@ export async function createPost(payload: CreatePostPayload): Promise<Post> {
   return postsMapper.toEntity(response.data);
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 5 — Query Keys + React Query Hooks</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// api/posts.keys.ts
@@ -184,9 +185,9 @@ export function useCreatePost() {
   });
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Step 6 — Barrel Export</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// index.ts — ONLY export what other features/pages should use
@@ -200,9 +201,9 @@ export type { CreatePostSchema } from "./validators/post.schema";
 // Usage from outside:
 // import { useGetPosts, type Post } from "@/features/posts";`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Rules</h2>
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ Only expose through <code className="font-mono bg-surface-raised px-1 rounded text-foreground">index.ts</code> — never deep-import between features</li>
@@ -211,15 +212,15 @@ export type { CreatePostSchema } from "./validators/post.schema";
             <li>✓ Pages live in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">app/</code> — they import from features, not the other way</li>
             <li>✓ Server components call <code className="font-mono bg-surface-raised px-1 rounded text-foreground">server-api.ts</code> directly; client components use React Query hooks</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-accent-50 border border-accent-200 rounded-xl">
+        <DocsSection className="p-4 bg-accent-50 border border-accent-200 rounded-xl">
           <p className="text-sm font-semibold text-accent-700 mb-1">Working Example</p>
           <Link href="/how-to-build-feature" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-600 hover:text-accent-800">
             <code className="bg-accent-100 px-1.5 py-0.5 rounded">src/features/how-to-build-feature</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

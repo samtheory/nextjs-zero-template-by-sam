@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function TypeScriptDoc() {
   return (
@@ -12,7 +13,7 @@ export default function TypeScriptDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Utility Types</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`type User = { id: string; name: string; email: string; role: "admin" | "user" };
@@ -46,9 +47,9 @@ type CreatePostArgs = Parameters<typeof createPost>;  // [string, string]
 // Awaited — unwrap a Promise type
 type ApiData = Awaited<ReturnType<typeof fetchUser>>;`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Extract & Exclude (Union manipulation)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`type Status = "pending" | "active" | "deleted" | "archived";
@@ -63,9 +64,9 @@ type VisibleStatuses = Exclude<Status, "deleted">;  // "pending" | "active" | "a
 type MaybeString = string | null | undefined;
 type DefiniteString = NonNullable<MaybeString>;  // string`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Generics</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// Generic API response wrapper
@@ -94,9 +95,9 @@ interface Pagination<T = unknown> {
   total: number;
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Type Guards & Narrowing</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// Type guard function
@@ -128,9 +129,9 @@ function area(shape: Shape): number {
   }
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Template Literal Types</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`type EventName = "click" | "focus" | "blur";
@@ -141,9 +142,9 @@ type HandlerName = \`on\${Capitalize<EventName>}\`;
 type CollectionName = "posts" | "users" | "comments";
 type QueryKey = \`\${CollectionName}:list\` | \`\${CollectionName}:detail\`;`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">as const & satisfies</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// as const — makes type literal (narrow), prevents widening
@@ -157,16 +158,16 @@ const config = {
 } satisfies Partial<AppConfig>;
 // config.timeout is number (not narrowed away), but shape is validated`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-accent-50 border border-accent-200 rounded-xl">
+        <DocsSection className="p-4 bg-accent-50 border border-accent-200 rounded-xl">
           <p className="text-sm font-semibold text-accent-700 mb-1">Working Example</p>
           <p className="text-xs text-accent-600 mb-3">Practical TypeScript patterns applied throughout the feature structure.</p>
           <Link href="/how-to-typescript" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-600 hover:text-accent-800">
             <code className="bg-accent-100 px-1.5 py-0.5 rounded">src/features/how-to-typescript</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

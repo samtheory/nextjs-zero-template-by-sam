@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function ReactQueryDoc() {
   return (
@@ -14,7 +15,7 @@ export default function ReactQueryDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Purpose in This Project</h2>
           <ul className="space-y-1.5 text-sm text-muted">
             <li>✓ All server data fetching (lists, details, paginated data)</li>
@@ -22,9 +23,9 @@ export default function ReactQueryDoc() {
             <li>✓ Replace ad-hoc <code className="font-mono bg-surface-raised px-1 rounded text-foreground">useEffect + useState</code> for async operations</li>
             <li>✓ Automatic background refresh, deduplication, retry logic</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Setup</h2>
           <p className="text-sm text-muted mb-3">QueryClient is already configured in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">CoreProvider</code>. All features automatically have access to it.</p>
           <CodeBlock language="typescript" className="border border-code-border">
@@ -32,9 +33,9 @@ export default function ReactQueryDoc() {
 // QueryClient is created once and provided to the whole app via QueryClientProvider.
 // You don't need to set this up — it's already done.`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Query Key Factory</h2>
           <p className="text-sm text-muted mb-3">Always define keys in a dedicated file. This makes invalidation reliable and keeps keys organized.</p>
           <CodeBlock language="typescript" className="border border-code-border">
@@ -47,9 +48,9 @@ export const postKeys = {
   detail: (id: string) => [...postKeys.details(), id] as const,
 };`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">useQuery — Fetching Data</h2>
           <CodeBlock language="typescript" className="border border-code-border mb-6">
             {`// features/posts/api/posts.api.ts
@@ -94,9 +95,9 @@ export function PostList() {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">useMutation — Modifying Data</h2>
           <CodeBlock language="typescript" className="border border-code-border mb-6">
             {`// features/posts/api/posts.api.ts
@@ -147,9 +148,9 @@ export function CreatePostButton() {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Best Practices</h2>
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ Always use key factories — never inline <code className="font-mono bg-surface-raised px-1 rounded text-foreground">["posts"]</code> directly</li>
@@ -159,16 +160,16 @@ export function CreatePostButton() {
             <li>✓ Invalidate on mutation success — don't manually update the cache unless perf requires it</li>
             <li>✓ Use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">isPending</code> (not <code className="font-mono bg-surface-raised px-1 rounded text-foreground">isLoading</code>) for mutations in v5</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-secondary-50 border border-secondary-200 rounded-xl">
+        <DocsSection className="p-4 bg-secondary-50 border border-secondary-200 rounded-xl">
           <p className="text-sm font-semibold text-secondary-700 mb-1">Working Example</p>
           <p className="text-xs text-secondary-600 mb-3">Full CRUD with useQuery + useMutation, key factory, and error handling.</p>
           <Link href="/how-to-react-query" className="inline-flex items-center gap-1.5 text-xs font-semibold text-secondary-600 hover:text-secondary-800">
             <code className="bg-secondary-100 px-1.5 py-0.5 rounded">src/features/how-to-react-query</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

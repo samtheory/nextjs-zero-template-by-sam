@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function ZodDoc() {
   return (
@@ -15,7 +16,7 @@ export default function ZodDoc() {
       <div className="space-y-10">
 
         {/* Purpose */}
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Purpose in This Project</h2>
           <ul className="space-y-1.5 text-sm text-muted">
             <li>✓ Validate API request/response shapes at runtime</li>
@@ -23,10 +24,10 @@ export default function ZodDoc() {
             <li>✓ Replace manual TypeScript types with inferred schemas</li>
             <li>✓ Transform and sanitize data at the boundaries of your app</li>
           </ul>
-        </section>
+        </DocsSection>
 
         {/* Where to use */}
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Where to Use</h2>
           <div className="grid grid-cols-2 gap-3 text-sm">
             {[
@@ -41,10 +42,10 @@ export default function ZodDoc() {
               </div>
             ))}
           </div>
-        </section>
+        </DocsSection>
 
         {/* Key concepts */}
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Key Concepts & API</h2>
 
           <h3 className="text-sm font-semibold text-foreground mb-2">1. Define a schema</h3>
@@ -144,10 +145,10 @@ if (!result.success) {
   console.log(formatted.email?._errors); // ["Invalid email"]
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
         {/* Best practices */}
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Best Practices</h2>
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ Define schemas in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">features/[name]/validators/[name].schema.ts</code></li>
@@ -157,10 +158,10 @@ if (!result.success) {
             <li>✓ Colocate update/create schemas with the base schema using <code className="font-mono bg-surface-raised px-1 rounded text-foreground">.partial()</code> / <code className="font-mono bg-surface-raised px-1 rounded text-foreground">.omit()</code></li>
             <li>✗ Never duplicate a Zod type as a manual TypeScript interface</li>
           </ul>
-        </section>
+        </DocsSection>
 
         {/* Feature link */}
-        <section className="p-4 bg-primary-50 border border-primary-200 rounded-xl">
+        <DocsSection className="p-4 bg-primary-50 border border-primary-200 rounded-xl">
           <p className="text-sm font-semibold text-primary-700 mb-1">Working Example</p>
           <p className="text-xs text-primary-600 mb-3">See a complete Zod use case with schemas, inference, and error handling.</p>
           <Link
@@ -170,7 +171,7 @@ if (!result.success) {
             <code className="bg-primary-100 px-1.5 py-0.5 rounded">src/features/how-to-zod</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

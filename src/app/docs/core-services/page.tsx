@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function CoreServicesDoc() {
   return (
@@ -12,7 +13,7 @@ export default function CoreServicesDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Service Map</h2>
           <div className="space-y-2 text-sm">
             {[
@@ -34,9 +35,9 @@ export default function CoreServicesDoc() {
               </div>
             ))}
           </div>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">HTTP Client</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// The http service is an Axios instance with:
@@ -52,9 +53,9 @@ const post  = await httpClient.post("/posts", body);   // POST
 await httpClient.patch(\`/posts/\${id}\`, body);          // PATCH
 await httpClient.delete(\`/posts/\${id}\`);               // DELETE`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Storage Service (SSR-safe localStorage)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// Never use localStorage directly in Next.js — it crashes on the server.
@@ -78,9 +79,9 @@ persist(storeCreator, {
   storage: createJSONStorage(() => storageFactory("local")),
 })`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Cookie Service</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// ── CLIENT (in "use client" components) ──
@@ -98,9 +99,9 @@ import { cookies } from "next/headers";
 const cookieStore = await cookies();
 const value = serverCookieService.get(cookieStore, "key");`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Accessing Services from Client Components</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// TokenService is exposed via CoreProvider context:
@@ -117,15 +118,15 @@ function MyComponent() {
 import { storageFactory } from "@/core/services/storage";
 import { clientCookieService } from "@/core/services/cookie";`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-info-50 border border-info-200 rounded-xl">
+        <DocsSection className="p-4 bg-info-50 border border-info-200 rounded-xl">
           <p className="text-sm font-semibold text-info-700 mb-1">Working Example</p>
           <Link href="/how-to-core-services" className="inline-flex items-center gap-1.5 text-xs font-semibold text-info-600 hover:text-info-800">
             <code className="bg-info-100 px-1.5 py-0.5 rounded">src/features/how-to-core-services</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

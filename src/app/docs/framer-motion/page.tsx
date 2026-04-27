@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function FramerMotionDoc() {
   return (
@@ -12,7 +13,7 @@ export default function FramerMotionDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Basic motion Element</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -34,9 +35,9 @@ export function FadeIn() {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Variants (reusable animation definitions)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -71,9 +72,9 @@ export function AnimatedList({ posts }: { posts: Post[] }) {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">AnimatePresence (enter/exit animations)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -111,9 +112,9 @@ export function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Gesture Animations</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -135,9 +136,9 @@ import { motion } from "framer-motion";
   className="w-12 h-12 rounded-full bg-primary-500 cursor-grab active:cursor-grabbing"
 />`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">useMotionValue &amp; useTransform</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -169,9 +170,9 @@ export function ParallaxCard() {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Page Transitions</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// app/template.tsx — use template.tsx NOT layout.tsx for page transitions
@@ -192,15 +193,15 @@ export default function Template({ children }: { children: React.ReactNode }) {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-error-50 border border-error-200 rounded-xl">
+        <DocsSection className="p-4 bg-error-50 border border-error-200 rounded-xl">
           <p className="text-sm font-semibold text-error-700 mb-1">Working Example</p>
           <Link href="/how-to-framer-motion" className="inline-flex items-center gap-1.5 text-xs font-semibold text-error-600 hover:text-error-800">
             <code className="bg-error-100 px-1.5 py-0.5 rounded">src/features/how-to-framer-motion</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

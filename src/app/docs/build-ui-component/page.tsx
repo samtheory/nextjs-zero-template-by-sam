@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function BuildUIDoc() {
   return (
@@ -12,7 +13,7 @@ export default function BuildUIDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Folder Conventions</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`presentation/components/
@@ -20,9 +21,9 @@ export default function BuildUIDoc() {
 ├── shared/        ← Composite components used across features (DataTable, EmptyState…)
 └── layouts/       ← Page-level layout shells (Sidebar, TopNav, PageHeader…)`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">cn Helper — className merging</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// shared/utils/cn.ts
@@ -34,9 +35,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 // Combines clsx (conditional classes) + tailwind-merge (removes duplicate Tailwind classes)`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Button with cva Variants</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// presentation/components/ui/Button.tsx
@@ -107,9 +108,9 @@ export function Button({
 // <Button variant="danger" isLoading={isPending}>Delete</Button>
 // <Button className="w-full">Full width override</Button>`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Input Component</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// presentation/components/ui/Input.tsx
@@ -152,9 +153,9 @@ export function Input({ label, error, hint, className, id, ...props }: InputProp
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Compound Component Pattern</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// presentation/components/ui/Card.tsx
@@ -193,9 +194,9 @@ export { Card };
 //   <Card.Footer><Button>Save</Button></Card.Footer>
 // </Card>`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Rules</h2>
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ Always use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">cn()</code> for className — enables safe overrides</li>
@@ -204,15 +205,15 @@ export { Card };
             <li>✓ Extend native HTML element types — always forward all HTML attributes</li>
             <li>✓ Keep components in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">presentation/components/ui/</code> — no business logic</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-accent-50 border border-accent-200 rounded-xl">
+        <DocsSection className="p-4 bg-accent-50 border border-accent-200 rounded-xl">
           <p className="text-sm font-semibold text-accent-700 mb-1">Working Example</p>
           <Link href="/how-to-build-ui" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-600 hover:text-accent-800">
             <code className="bg-accent-100 px-1.5 py-0.5 rounded">src/features/how-to-build-ui</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

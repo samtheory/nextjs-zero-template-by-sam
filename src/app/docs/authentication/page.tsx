@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function AuthDoc() {
   return (
@@ -12,7 +13,7 @@ export default function AuthDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Auth Flow Overview</h2>
           <div className="bg-surface border border-border rounded-xl p-4 text-xs font-mono text-muted space-y-1">
             <p>1. User submits login form (React Hook Form + Zod)</p>
@@ -23,9 +24,9 @@ export default function AuthDoc() {
             <p>6. RSC pages access user via <code className="text-primary-600">serverCookieService.get()</code></p>
             <p>7. On logout → <code className="text-primary-600">tokenService.clearToken()</code> + store reset</p>
           </div>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">TokenService</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// Already implemented in core/services/token
@@ -46,9 +47,9 @@ function SomeClientComponent() {
   tokenService.clearToken();
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Auth Store (Zustand)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// features/auth/store/auth.store.ts
@@ -75,9 +76,9 @@ export const useAuthStore = create<AuthState>()(
   )
 );`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Login Mutation</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// features/auth/api/auth.api.ts
@@ -115,9 +116,9 @@ export function useLogout() {
   };
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Route Protection (Next.js Middleware)</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// src/middleware.ts
@@ -141,9 +142,9 @@ export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Reading Auth in Server Components</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// app/dashboard/page.tsx — Server Component
@@ -160,15 +161,15 @@ export default async function DashboardPage() {
   return <div>Welcome!</div>;
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-info-50 border border-info-200 rounded-xl">
+        <DocsSection className="p-4 bg-info-50 border border-info-200 rounded-xl">
           <p className="text-sm font-semibold text-info-700 mb-1">Working Example</p>
           <Link href="/how-to-auth" className="inline-flex items-center gap-1.5 text-xs font-semibold text-info-600 hover:text-info-800">
             <code className="bg-info-100 px-1.5 py-0.5 rounded">src/features/how-to-auth</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

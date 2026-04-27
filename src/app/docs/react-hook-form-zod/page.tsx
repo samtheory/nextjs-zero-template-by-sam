@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function ReactHookFormZodDoc() {
   return (
@@ -11,7 +12,7 @@ export default function ReactHookFormZodDoc() {
       </p>
 
       <div className="space-y-10">
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Purpose</h2>
           <ul className="space-y-1.5 text-sm text-muted">
             <li>✓ Type-safe forms with schema-driven validation</li>
@@ -19,9 +20,9 @@ export default function ReactHookFormZodDoc() {
             <li>✓ Uncontrolled inputs = minimal re-renders = great performance</li>
             <li>✓ Native integration with any UI input component</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">1. Define the Schema</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// features/auth/validators/login.schema.ts
@@ -36,9 +37,9 @@ export const loginSchema = z.object({
 // Infer the type — use this as the form's type
 export type LoginSchema = z.infer<typeof loginSchema>;`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">2. Build the Form Component</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`"use client";
@@ -116,9 +117,9 @@ export function LoginForm() {
   );
 }`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Key useForm Options</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`const form = useForm<MySchema>({
@@ -146,9 +147,9 @@ const {
   getValues,         // get current values without subscribe
 } = form;`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Using Controller for Custom Inputs</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`import { Controller } from "react-hook-form";
@@ -167,9 +168,9 @@ const {
   )}
 />`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-3 pb-2 border-b border-border">Best Practices</h2>
           <ul className="space-y-2 text-sm text-muted">
             <li>✓ Schema lives in <code className="font-mono bg-surface-raised px-1 rounded text-foreground">validators/[name].schema.ts</code></li>
@@ -179,16 +180,16 @@ const {
             <li>✓ Use <code className="font-mono bg-surface-raised px-1 rounded text-foreground">setError</code> to attach server errors back to specific fields</li>
             <li>✗ Never use both <code className="font-mono bg-surface-raised px-1 rounded text-foreground">register</code> AND controlled <code className="font-mono bg-surface-raised px-1 rounded text-foreground">value/onChange</code> on the same input</li>
           </ul>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-primary-50 border border-primary-200 rounded-xl">
+        <DocsSection className="p-4 bg-primary-50 border border-primary-200 rounded-xl">
           <p className="text-sm font-semibold text-primary-700 mb-1">Working Example</p>
           <p className="text-xs text-primary-600 mb-3">Login and registration forms with Zod validation and server error mapping.</p>
           <Link href="/how-to-react-hook-form" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-800">
             <code className="bg-primary-100 px-1.5 py-0.5 rounded">src/features/how-to-react-hook-form</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );

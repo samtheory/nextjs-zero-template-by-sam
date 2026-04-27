@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DocsSection } from "./_components/DocsSection";
 
 const topics = [
   {
@@ -85,7 +86,7 @@ export default function DocsHome() {
       {/* Topics by group */}
       <div className="space-y-8">
         {topics.map((group) => (
-          <section key={group.group}>
+          <DocsSection key={group.group}>
             <h2 className={`text-xs font-bold uppercase tracking-widest mb-3 ${group.labelColor}`}>
               {group.group}
             </h2>
@@ -100,11 +101,11 @@ export default function DocsHome() {
                     <p className="text-sm font-semibold text-foreground">{item.label}</p>
                     <p className="text-xs text-muted mt-0.5">{item.desc}</p>
                   </div>
-                  <span className="text-muted-foreground mt-0.5 ml-4 flex-shrink-0">→</span>
+                  <span className="text-muted-foreground mt-0.5 ml-4 shrink-0">→</span>
                 </Link>
               ))}
             </div>
-          </section>
+          </DocsSection>
         ))}
       </div>
     </>

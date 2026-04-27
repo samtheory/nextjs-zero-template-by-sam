@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeBlock } from "../_components/CodeBlock";
+import { DocsSection } from "../_components/DocsSection";
 
 export default function EnvConfigDoc() {
   return (
@@ -12,7 +13,7 @@ export default function EnvConfigDoc() {
 
       <div className="space-y-10">
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">File Conventions</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`.env                  # Shared defaults — COMMITTED to git (no secrets)
@@ -24,9 +25,9 @@ export default function EnvConfigDoc() {
 # Next.js loads these automatically based on NODE_ENV.
 # More specific files override less specific ones.`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">NEXT_PUBLIC_ vs Server-Only</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`# .env.local
@@ -40,9 +41,9 @@ PB_ADMIN_EMAIL=admin@example.com
 PB_ADMIN_PASSWORD=supersecret
 JWT_SECRET=my-jwt-secret`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Validated Config with Zod</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// core/services/config/env-validator.ts
@@ -65,9 +66,9 @@ if (!parsed.success) {
 
 export const env = parsed.data;`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">App Config Service</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`// core/services/config/app-config.ts
@@ -90,9 +91,9 @@ export const appConfig = {
 // import { appConfig } from "@/core/services/config";
 // const pb = new PocketBase(appConfig.pocketbase.url);`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section>
+        <DocsSection>
           <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Multi-Environment Setup</h2>
           <CodeBlock language="typescript" className="border border-code-border">
             {`# .env (committed — shared defaults)
@@ -112,15 +113,15 @@ NEXT_PUBLIC_PB_URL=http://localhost:8091
 # GitHub Actions: Settings → Secrets → NEXT_PUBLIC_PB_URL
 # Vercel: Project → Settings → Environment Variables`}
           </CodeBlock>
-        </section>
+        </DocsSection>
 
-        <section className="p-4 bg-warning-50 border border-warning-200 rounded-xl">
+        <DocsSection className="p-4 bg-warning-50 border border-warning-200 rounded-xl">
           <p className="text-sm font-semibold text-warning-700 mb-1">Working Example</p>
           <Link href="/how-to-env-config" className="inline-flex items-center gap-1.5 text-xs font-semibold text-warning-600 hover:text-warning-800">
             <code className="bg-warning-100 px-1.5 py-0.5 rounded">src/features/how-to-env-config</code>
             <span>→</span>
           </Link>
-        </section>
+        </DocsSection>
       </div>
     </>
   );
