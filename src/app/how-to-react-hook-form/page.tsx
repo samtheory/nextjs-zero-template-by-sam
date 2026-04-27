@@ -165,7 +165,7 @@ function ValidationModeDemo() {
           </button>
         ))}
       </div>
-      <form onSubmit={handleSubmit(() => {})} className="flex gap-2">
+      <form onSubmit={handleSubmit(() => { })} className="flex gap-2">
         <div className="flex-1">
           <input {...register("email")} placeholder="type an email then tab / type / submit" className={inputClass(!!errors.email)} />
           {errors.email && <p className="text-xs text-error-500 mt-1">{errors.email.message as string}</p>}
