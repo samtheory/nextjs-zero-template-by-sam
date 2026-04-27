@@ -51,6 +51,20 @@ const navGroups = [
     title: "Best Practices",
     items: [{ label: "Form Validation & Errors", href: "/docs/form-validation" }],
   },
+  {
+    title: "New Core Services",
+    items: [
+      { label: "Queue Service", href: "/docs/queue" },
+      { label: "Performance Utilities", href: "/docs/performance" },
+      { label: "Clipboard Service", href: "/docs/clipboard" },
+      { label: "Transfer (Upload/Download)", href: "/docs/transfer" },
+      { label: "Crypto Service", href: "/docs/crypto" },
+      { label: "Device & Browser Detection", href: "/docs/device" },
+      { label: "Keyboard Shortcuts", href: "/docs/shortcuts" },
+      { label: "WebSocket Service", href: "/docs/websocket" },
+      { label: "SEO & Metadata", href: "/docs/seo" },
+    ],
+  },
 ];
 
 export function DocsSideNav() {
@@ -86,8 +100,8 @@ export function DocsSideNav() {
                     <Link
                       href={item.href}
                       className={`flex items-center gap-2 px-3 py-2 text-sm rounded-2xl transition-colors duration-200 ${isActive
-                          ? "bg-sidebar-active-bg text-sidebar-active-text font-semibold"
-                          : "text-muted hover:text-foreground hover:bg-surface-raised dark:hover:bg-surface"
+                        ? "bg-sidebar-active-bg text-sidebar-active-text font-semibold"
+                        : "text-muted hover:text-foreground hover:bg-surface-raised dark:hover:bg-surface"
                         }`}
                     >
                       {isActive && (

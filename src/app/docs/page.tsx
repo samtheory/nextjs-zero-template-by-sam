@@ -65,6 +65,22 @@ const topics = [
       { label: "Form Validation & Error Handling", href: "/docs/form-validation", desc: "Zod + RHF patterns, error mapping, UX" },
     ],
   },
+  {
+    group: "New Core Services",
+    color: "border-info-200 bg-info-50",
+    labelColor: "text-info-700",
+    items: [
+      { label: "Queue Service", href: "/docs/queue", desc: "Background tasks, concurrency, retry" },
+      { label: "Performance Utilities", href: "/docs/performance", desc: "Debounce, throttle, lazy-load" },
+      { label: "Clipboard Service", href: "/docs/clipboard", desc: "copy/paste with browser API fallback" },
+      { label: "Transfer", href: "/docs/transfer", desc: "Upload with progress, download to file" },
+      { label: "Crypto Service", href: "/docs/crypto", desc: "AES-256-GCM encryption, PBKDF2 hashing" },
+      { label: "Device & Browser", href: "/docs/device", desc: "SSR-safe device/browser detection" },
+      { label: "Keyboard Shortcuts", href: "/docs/shortcuts", desc: "Global shortcut registration" },
+      { label: "WebSocket Service", href: "/docs/websocket", desc: "Real-time with auto-reconnect" },
+      { label: "SEO & Metadata", href: "/docs/seo", desc: "Next.js Metadata, JSON-LD structured data" },
+    ],
+  },
 ];
 
 export default function DocsHome() {
