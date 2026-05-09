@@ -63,8 +63,8 @@ export function CoreProvider({ children }: { children: ReactNode }) {
     bootstrapCore(() => {
       router.push("/login");
     }),
-  );
-
+  ); 
+  
   return (
     <CoreContext.Provider value={tokenService}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
