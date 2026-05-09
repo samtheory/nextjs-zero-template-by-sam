@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { bootstrapCore } from '@/core';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { createContext, useContext, useRef, type ReactNode } from 'react';
-import type { TokenService } from '@/core';
+import { bootstrapCore } from "@/core";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { createContext, useContext, useState, type ReactNode } from "react";
+import type { TokenService } from "@/core";
 
 // ─── Token Context ────────────────────────────────────────────────────────────
 
@@ -12,7 +12,8 @@ const CoreContext = createContext<TokenService | null>(null);
 
 export function useTokenService(): TokenService {
   const ctx = useContext(CoreContext);
-  if (!ctx) throw new Error('useTokenService must be used inside <CoreProvider>');
+  if (!ctx)
+    throw new Error("useTokenService must be used inside <CoreProvider>");
   return ctx;
 }
 
@@ -26,10 +27,10 @@ function makeQueryClient() {
         retry: (failureCount, error: unknown) => {
           // Never retry on 4xx
           if (
-            typeof error === 'object' &&
+            typeof error === "object" &&
             error !== null &&
-            'status' in error &&
-            typeof (error as { status: number }).status === 'number' &&
+            "status" in error &&
+            typeof (error as { status: number }).status === "number" &&
             (error as { status: number }).status >= 400 &&
             (error as { status: number }).status < 500
           ) {
@@ -45,7 +46,7 @@ function makeQueryClient() {
 let browserQueryClient: QueryClient | undefined;
 
 function getQueryClient() {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     // SSR: always create new client
     return makeQueryClient();
   }
@@ -57,17 +58,15 @@ function getQueryClient() {
 
 export function CoreProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const tokenServiceRef = useRef<TokenService | null>(null);
   const queryClient = getQueryClient();
-
-  if (tokenServiceRef.current === null) {
-    tokenServiceRef.current = bootstrapCore(() => {
-      router.push('/login');
-    });
-  }
+  const [tokenService] = useState<TokenService>(() =>
+    bootstrapCore(() => {
+      router.push("/login");
+    }),
+  );
 
   return (
-    <CoreContext.Provider value={tokenServiceRef.current}>
+    <CoreContext.Provider value={tokenService}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </CoreContext.Provider>
   );

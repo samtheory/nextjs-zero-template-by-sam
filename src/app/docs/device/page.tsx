@@ -5,19 +5,29 @@ import { WorkingExampleCard } from "../_components/WorkingExampleCard";
 export default function DeviceDoc() {
   return (
     <>
-      <div className="mb-2"><span className="text-xs text-muted">Core Services</span></div>
-      <h1 className="text-3xl font-bold text-foreground mb-2">Device & Browser Detection</h1>
+      <div className="mb-2">
+        <span className="text-xs text-muted">Core Services</span>
+      </div>
+      <h1 className="text-3xl font-bold text-foreground mb-2">
+        Device & Browser Detection
+      </h1>
       <p className="text-muted text-base mb-8 leading-relaxed">
         SSR-safe device and browser detection in{" "}
-        <code className="font-mono bg-surface-raised px-1 rounded text-foreground">src/core/device/</code>.
-        All methods return safe fallbacks when called on the server.
+        <code className="font-mono bg-surface-raised px-1 rounded text-foreground">
+          src/core/device/
+        </code>
+        . All methods return safe fallbacks when called on the server.
       </p>
 
       <div className="space-y-10">
-
         <DocsSection>
-          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Device detection</h2>
-          <CodeBlock language="typescript" className="border border-code-border">
+          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">
+            Device detection
+          </h2>
+          <CodeBlock
+            language="typescript"
+            className="border border-code-border"
+          >
             {`import { device } from "@/core/device";
 
 device.isMobile()             // phone UA string
@@ -39,8 +49,13 @@ const off = device.onConnectivityChange((online) => {
         </DocsSection>
 
         <DocsSection>
-          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">Browser detection</h2>
-          <CodeBlock language="typescript" className="border border-code-border">
+          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">
+            Browser detection
+          </h2>
+          <CodeBlock
+            language="typescript"
+            className="border border-code-border"
+          >
             {`import { browser } from "@/core/device";
 
 browser.isChrome()            // true in Google Chrome
@@ -56,8 +71,13 @@ browser.supportsWebSocket()`}
         </DocsSection>
 
         <DocsSection>
-          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">In React components</h2>
-          <CodeBlock language="typescript" className="border border-code-border">
+          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border">
+            In React components
+          </h2>
+          <CodeBlock
+            language="typescript"
+            className="border border-code-border"
+          >
             {`// Always use in useEffect or event handlers — never in render
 // (device methods are SSR-safe but return defaults on server)
 
@@ -79,7 +99,10 @@ return device.isDesktop() ? <DesktopView /> : <MobileView />;`}
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/docs/how-to-device" label="src/core/device" />
+        <WorkingExampleCard
+          href="/docs/how-to-device"
+          label="src/core/device"
+        />
       </div>
     </>
   );
