@@ -85,7 +85,7 @@ useEffect(() => {
           </p>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-shortcuts" label="src/core/shortcuts" />
+        <WorkingExampleCard href="/docs/how-to-shortcuts" label="src/core/shortcuts" />
       </div>
     </>
   );

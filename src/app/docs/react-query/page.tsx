@@ -162,7 +162,7 @@ export function CreatePostButton() {
           </ul>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-react-query" label="src/features/how-to-react-query" />
+        <WorkingExampleCard href="/docs/how-to-react-query" label="src/features/how-to-react-query" />
       </div>
     </>
   );

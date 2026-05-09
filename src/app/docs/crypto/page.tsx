@@ -72,7 +72,7 @@ const isValid = await hashService.verifyPassword("mypassword", hash, salt);`}
           </p>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-crypto" label="src/core/crypto" />
+        <WorkingExampleCard href="/docs/how-to-crypto" label="src/core/crypto" />
       </div>
     </>
   );

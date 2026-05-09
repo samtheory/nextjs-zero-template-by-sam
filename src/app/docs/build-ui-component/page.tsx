@@ -207,7 +207,7 @@ export { Card };
           </ul>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-build-ui" label="src/features/how-to-build-ui" />
+        <WorkingExampleCard href="/docs/how-to-build-ui" label="src/features/how-to-build-ui" />
       </div>
     </>
   );

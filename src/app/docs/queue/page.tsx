@@ -99,7 +99,7 @@ imageQueue.add("resize-image", { imageId: "img_123" });`}
           </p>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-queue" label="src/core/queue" />
+        <WorkingExampleCard href="/docs/how-to-queue" label="src/core/queue" />
       </div>
     </>
   );

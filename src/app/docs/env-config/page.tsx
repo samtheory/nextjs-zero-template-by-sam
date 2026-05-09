@@ -115,7 +115,7 @@ NEXT_PUBLIC_PB_URL=http://localhost:8091
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-env-config" label="src/features/how-to-env-config" />
+        <WorkingExampleCard href="/docs/how-to-env-config" label="src/features/how-to-env-config" />
       </div>
     </>
   );

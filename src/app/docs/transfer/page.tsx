@@ -68,7 +68,7 @@ const blob = await progressTracker.fromResponse(response, (percent) => {
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-transfer" label="src/core/transfer" />
+        <WorkingExampleCard href="/docs/how-to-transfer" label="src/core/transfer" />
       </div>
     </>
   );

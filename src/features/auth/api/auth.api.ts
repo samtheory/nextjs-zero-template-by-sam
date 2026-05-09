@@ -104,6 +104,7 @@ export async function confirmEmailChange(
   payload: ConfirmEmailChangePayload,
 ): Promise<void> {
   try {
+    
     await httpClient.post(`${USERS_COLLECTION}/confirm-email-change`, payload);
   } catch (err) {
     throw ErrorMapper.map(err);

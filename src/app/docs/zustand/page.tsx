@@ -178,7 +178,7 @@ const count = useStore((s) => s.count); // only re-renders when count changes`}
           </ul>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-zustand" label="src/features/how-to-zustand" />
+        <WorkingExampleCard href="/docs/how-to-zustand" label="src/features/how-to-zustand" />
       </div>
     </>
   );

@@ -195,7 +195,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-framer-motion" label="src/features/how-to-framer-motion" />
+        <WorkingExampleCard href="/docs/how-to-framer-motion" label="src/features/how-to-framer-motion" />
       </div>
     </>
   );

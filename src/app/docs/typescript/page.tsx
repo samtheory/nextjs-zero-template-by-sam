@@ -160,7 +160,7 @@ const config = {
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-typescript" label="src/features/how-to-typescript" />
+        <WorkingExampleCard href="/docs/how-to-typescript" label="src/features/how-to-typescript" />
       </div>
     </>
   );

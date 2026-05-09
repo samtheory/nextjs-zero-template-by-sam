@@ -182,7 +182,7 @@ const {
           </ul>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-react-hook-form" label="src/features/how-to-react-hook-form" />
+        <WorkingExampleCard href="/docs/how-to-react-hook-form" label="src/features/how-to-react-hook-form" />
       </div>
     </>
   );

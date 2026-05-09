@@ -69,7 +69,7 @@ try {
           </p>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-clipboard" label="src/core/clipboard" />
+        <WorkingExampleCard href="/docs/how-to-clipboard" label="src/core/clipboard" />
       </div>
     </>
   );

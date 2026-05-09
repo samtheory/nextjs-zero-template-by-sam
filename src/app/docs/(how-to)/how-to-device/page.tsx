@@ -10,13 +10,16 @@ export default function HowToDevice() {
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    setMounted(true);
-    setOnline(device.isOnline());
-    setViewport(device.getViewport());
+    const timer = window.setTimeout(() => {
+      setMounted(true);
+      setOnline(device.isOnline());
+      setViewport(device.getViewport());
+    }, 0);
     const off = device.onConnectivityChange((status) => setOnline(status));
     const handleResize = () => setViewport(device.getViewport());
     window.addEventListener("resize", handleResize);
     return () => {
+      window.clearTimeout(timer);
       off();
       window.removeEventListener("resize", handleResize);
     };

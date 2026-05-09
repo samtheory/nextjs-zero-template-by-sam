@@ -147,17 +147,19 @@ export class AuthMapper {
 Input validation and type safety for forms.
 
 ```typescript
-export const signupSchema = z.object({
-  email: z.string().email('Invalid email'),
-  name: z.string().min(1, 'Name required'),
-  password: z.string().min(8, 'Min 8 chars'),
-  passwordConfirm: z.string(),
-  emailVisibility: z.boolean(),
-  avatar: z.instanceof(File).optional(),
-}).refine(data => data.password === data.passwordConfirm, {
-  message: 'Passwords must match',
-  path: ['passwordConfirm'],
-});
+export const signupSchema = z
+  .object({
+    email: z.string().email("Invalid email"),
+    name: z.string().min(1, "Name required"),
+    password: z.string().min(8, "Min 8 chars"),
+    passwordConfirm: z.string(),
+    emailVisibility: z.boolean(),
+    avatar: z.instanceof(File).optional(),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords must match",
+    path: ["passwordConfirm"],
+  });
 ```
 
 ### API Layer (`api/`)
@@ -168,8 +170,8 @@ Cache key definitions for React Query.
 
 ```typescript
 export const authKeys = {
-  all: ['auth'] as const,
-  session: () => [...authKeys.all, 'session'] as const,
+  all: ["auth"] as const,
+  session: () => [...authKeys.all, "session"] as const,
 };
 ```
 
@@ -178,16 +180,18 @@ export const authKeys = {
 Direct API communication using the core HTTP client.
 
 ```typescript
-export async function signup(payload: SignupPayload): Promise<SignupResponseDto> {
+export async function signup(
+  payload: SignupPayload,
+): Promise<SignupResponseDto> {
   if (payload.avatar) {
     // Multipart upload for files
     const formData = new FormData();
     // ... populate formData
-    return await api.upload({ url: '/users/records', body: formData });
+    return await api.upload({ url: "/users/records", body: formData });
   }
 
   // JSON request
-  return await httpClient.post('/users/records', payload);
+  return await httpClient.post("/users/records", payload);
 }
 ```
 
@@ -201,10 +205,10 @@ React Query hooks that provide data fetching and mutations.
 const { signup, isPending, error } = useSignup();
 
 await signup({
-  email: 'user@example.com',
-  name: 'John Doe',
-  password: 'password123',
-  passwordConfirm: 'password123',
+  email: "user@example.com",
+  name: "John Doe",
+  password: "password123",
+  passwordConfirm: "password123",
   emailVisibility: false,
 });
 ```
@@ -215,8 +219,8 @@ await signup({
 const { login, isPending, error } = useLogin();
 
 await login({
-  identity: 'user@example.com',
-  password: 'password123',
+  identity: "user@example.com",
+  password: "password123",
 });
 // Stores token and redirects on success
 ```
@@ -234,13 +238,13 @@ await refresh(); // Refreshes expired tokens
 const { request, confirm } = usePasswordReset();
 
 // Request reset email
-await request({ email: 'user@example.com' });
+await request({ email: "user@example.com" });
 
 // Confirm with token
 await confirm({
-  token: 'reset-token',
-  password: 'newpassword',
-  passwordConfirm: 'newpassword',
+  token: "reset-token",
+  password: "newpassword",
+  passwordConfirm: "newpassword",
 });
 ```
 
@@ -250,12 +254,12 @@ await confirm({
 const { request, confirm } = useEmailChange();
 
 // Request email change
-await request({ newEmail: 'new@example.com' });
+await request({ newEmail: "new@example.com" });
 
 // Confirm with token
 await confirm({
-  token: 'email-change-token',
-  password: 'current-password',
+  token: "email-change-token",
+  password: "current-password",
 });
 ```
 
@@ -288,7 +292,7 @@ NEXT_PUBLIC_REFRESH_ENDPOINT=/api/collections/users/auth-refresh
 
 ```tsx
 // app/layout.tsx
-import { CoreProvider } from '@/presentation/providers/CoreProvider';
+import { CoreProvider } from "@/presentation/providers/CoreProvider";
 
 export default function RootLayout({ children }) {
   return (
@@ -305,7 +309,7 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // app/(auth)/signup/page.tsx
-import { SignupForm } from '@/features/auth';
+import { SignupForm } from "@/features/auth";
 
 export default function SignupPage() {
   return (
@@ -322,7 +326,7 @@ export default function SignupPage() {
 
 ```tsx
 // After successful login/signup
-router.push('/'); // Redirect to dashboard
+router.push("/"); // Redirect to dashboard
 ```
 
 ## Usage Examples
@@ -330,9 +334,9 @@ router.push('/'); // Redirect to dashboard
 ### Complete Signup Flow
 
 ```tsx
-'use client';
+"use client";
 
-import { SignupForm } from '@/features/auth';
+import { SignupForm } from "@/features/auth";
 
 export function SignupPage() {
   return (
@@ -349,9 +353,9 @@ export function SignupPage() {
 ### Login with Error Handling
 
 ```tsx
-'use client';
+"use client";
 
-import { LoginForm } from '@/features/auth';
+import { LoginForm } from "@/features/auth";
 
 export function LoginPage() {
   return (
@@ -368,9 +372,9 @@ export function LoginPage() {
 ### Custom Auth Hook Usage
 
 ```tsx
-'use client';
+"use client";
 
-import { useLogin, useSignup } from '@/features/auth';
+import { useLogin, useSignup } from "@/features/auth";
 
 export function CustomAuthComponent() {
   const { login, isPending: loginPending } = useLogin();
@@ -378,11 +382,11 @@ export function CustomAuthComponent() {
 
   const handleLogin = async () => {
     try {
-      await login({ identity: 'user@example.com', password: 'pass' });
+      await login({ identity: "user@example.com", password: "pass" });
       // Success - user is redirected automatically
     } catch (error) {
       // Handle error
-      console.error('Login failed:', error.message);
+      console.error("Login failed:", error.message);
     }
   };
 
@@ -406,7 +410,7 @@ Always use Zod schemas for form validation. They provide:
 Use the domain error types from `@/core/services/error-mapper`:
 
 ```typescript
-import { isAuthenticationError, isValidationError } from '@/core';
+import { isAuthenticationError, isValidationError } from "@/core";
 
 try {
   await login(credentials);
@@ -430,7 +434,7 @@ Always define query keys in `auth.keys.ts` for proper cache invalidation:
 queryClient.invalidateQueries({ queryKey: authKeys.session() });
 
 // ❌ Bad - hardcoded strings
-queryClient.invalidateQueries({ queryKey: ['auth', 'session'] });
+queryClient.invalidateQueries({ queryKey: ["auth", "session"] });
 ```
 
 ### 4. **Keep Components Focused**
@@ -471,7 +475,7 @@ Always use the provided types:
 
 ```typescript
 // ✅ Good
-import type { SignupPayload, UserViewModel } from '@/features/auth';
+import type { SignupPayload, UserViewModel } from "@/features/auth";
 
 // ❌ Bad - inline types or any
 const user: any = await signup(data);
@@ -498,7 +502,7 @@ await login(credentials); // Token stored via TokenService
 
 // ❌ Bad - manual token handling
 const response = await api.login(credentials);
-localStorage.setItem('token', response.token);
+localStorage.setItem("token", response.token);
 ```
 
 ### 8. **Avatar Upload Handling**
@@ -508,8 +512,8 @@ For file uploads, ensure proper FormData construction:
 ```typescript
 // ✅ Good - handled in auth.api.ts
 const formData = new FormData();
-formData.append('avatar', file);
-await api.upload({ url: '/users/records', body: formData });
+formData.append("avatar", file);
+await api.upload({ url: "/users/records", body: formData });
 ```
 
 ### 9. **Error Boundaries**
@@ -517,7 +521,7 @@ await api.upload({ url: '/users/records', body: formData });
 Wrap auth forms in error boundaries for better UX:
 
 ```tsx
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary } from "react-error-boundary";
 
 export function AuthPage() {
   return (

@@ -99,7 +99,7 @@ useEffect(() => {
           </div>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-performance" label="src/core/performance" />
+        <WorkingExampleCard href="/docs/how-to-performance" label="src/core/performance" />
       </div>
     </>
   );

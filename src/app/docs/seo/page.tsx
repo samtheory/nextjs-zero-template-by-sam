@@ -106,7 +106,7 @@ export default function BlogPost({ post }) {
           </div>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-seo" label="src/core/seo" />
+        <WorkingExampleCard href="/docs/how-to-seo" label="src/core/seo" />
       </div>
     </>
   );

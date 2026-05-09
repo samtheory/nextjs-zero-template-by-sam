@@ -214,7 +214,7 @@ export type { CreatePostSchema } from "./validators/post.schema";
           </ul>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-build-feature" label="src/features/how-to-build-feature" />
+        <WorkingExampleCard href="/docs/how-to-build-feature" label="src/features/how-to-build-feature" />
       </div>
     </>
   );

@@ -151,7 +151,7 @@ const role = form.watch("role");
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-form-validation" label="src/features/how-to-form-validation" />
+        <WorkingExampleCard href="/docs/how-to-form-validation" label="src/features/how-to-form-validation" />
       </div>
     </>
   );

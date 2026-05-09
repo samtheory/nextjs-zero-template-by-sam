@@ -120,7 +120,7 @@ import { clientCookieService } from "@/core/services/cookie";`}
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-core-services" label="src/features/how-to-core-services" />
+        <WorkingExampleCard href="/docs/how-to-core-services" label="src/features/how-to-core-services" />
       </div>
     </>
   );

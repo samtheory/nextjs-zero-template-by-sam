@@ -148,7 +148,7 @@ const thumb = pb.files.getUrl(record, record.cover, { thumb: "100x100" });`}
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-pocketbase" label="src/features/how-to-pocketbase" />
+        <WorkingExampleCard href="/docs/how-to-pocketbase" label="src/features/how-to-pocketbase" />
       </div>
     </>
   );

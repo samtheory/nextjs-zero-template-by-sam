@@ -149,7 +149,7 @@ const fira = Fira_Code({ variable: "--font-fira-code", subsets: ["latin"] });
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-tailwind" label="src/features/how-to-tailwind" />
+        <WorkingExampleCard href="/docs/how-to-tailwind" label="src/features/how-to-tailwind" />
       </div>
     </>
   );

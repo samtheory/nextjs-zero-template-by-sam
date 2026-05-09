@@ -162,7 +162,7 @@ if (!result.success) {
         </DocsSection>
 
         {/* Feature link */}
-        <WorkingExampleCard href="/how-to-zod" label="src/features/how-to-zod" />
+        <WorkingExampleCard href="/docs/how-to-zod" label="src/features/how-to-zod" />
       </div>
     </>
   );

@@ -87,7 +87,7 @@ ws.connect(url, { reconnect: { strategy: "linear", baseDelay: 2000 } });`}
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-websocket" label="src/core/websocket" />
+        <WorkingExampleCard href="/docs/how-to-websocket" label="src/core/websocket" />
       </div>
     </>
   );

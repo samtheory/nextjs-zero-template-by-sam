@@ -163,7 +163,7 @@ export default async function DashboardPage() {
           </CodeBlock>
         </DocsSection>
 
-        <WorkingExampleCard href="/how-to-auth" label="src/features/how-to-auth" />
+        <WorkingExampleCard href="/docs/how-to-auth" label="src/features/how-to-auth" />
       </div>
     </>
   );
